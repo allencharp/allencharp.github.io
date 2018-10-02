@@ -6,7 +6,7 @@ date:   2018-07-08 20:34:34 +0800
 
 Catalan number:
 
-how many paths are there from (0,0) to (n,n) without crossing the diagonal ?
+how many conditions are there to combine a binary search tree with O(n)
 
 <image src="https://wikimedia.org/api/rest_v1/media/math/render/svg/34d4f28865115a05a806649a40f84e1bbc736320" />
 <hr>
@@ -17,3 +17,6 @@ def catalan_number(n):
       nm, dm = ( nm*(n+k), dm*k )
     return nm/dm
 {% endhighlight %}
+
+the first catalan numbers from n=0,1,2,3,... are
+1,1,2,
