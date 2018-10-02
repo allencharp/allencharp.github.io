@@ -24,5 +24,5 @@ def catalan_number(n):
 1. [Binary Search Tree]({ https://github.com/allencharp/LeetCode/blob/master/UniqueBinarySearchTrees.py })<br>
 About how many structurally unique BST(binary search trees) that store value O(n)?
 
-2. [Different ways to add parentheses]({ https://github.com/allencharp/LeetCode/blob/master/DifferentWaystoAddParentheses.py })
+2. [Different Ways to Add Parentheses]({ https://github.com/allencharp/LeetCode/blob/master/DifferentWaystoAddParentheses.py })
 
