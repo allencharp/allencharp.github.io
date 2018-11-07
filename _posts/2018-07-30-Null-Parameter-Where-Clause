@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "None Input Parameter in Where Caluse"
+date:   2018-07-30 21:34:34 +0800
+categories: jekyll update
+---
+
+If our store procedure accepts some parameters to compose the SQL where clause, user might enter any of the field values all are optional.
+How to write the where clause with optional parameters
+
+SQL Server
+{%highlight python%}
+Create Procedure
+{
+@LastName Varchar(100),
+@Address Varchar(100)
+}
+as
+select * 
+from TBS_Names 
+where lastname = @LastName or @LastName is null 
+and address = @Address or @Address is null
+go
+{% endhighlight %}
