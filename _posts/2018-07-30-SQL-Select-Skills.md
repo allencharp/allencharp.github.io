@@ -15,16 +15,16 @@ CREATE PROCEDURE
 @LastName VARCHAR(100),
 @Address VARCHAR(100)
 }
-as
-select * from TBS_Names 
-where lastname = @LastName or @LastName is null 
-and address = @Address or @Address is null
-go
+AS
+SELECT * FROM NamesTable 
+WHERE lastname = @LastName OR @LastName IS null 
+AND address = @Address or @Address IS null
+GO
 {% endhighlight %}
 
-# sum(case(..)) syntax
-How to select the rate of girls in one class ?
+# sum(case(..) end¬) syntax
+How to select the percentage of girls in one class ?
 {% highlight sql %}
-select (sum(case when gender="M" then 1 end) / count(*)) as 'num' 
-from studentTable;
+SELECT (SUM(CASE WHEN gender="M" THEN 1 END) / count(*)) AS 'num' 
+FROM studentTable;
 {% endhighlight %}
