@@ -23,7 +23,7 @@ GO
 {% endhighlight %}
 
 # sum(case(..) end) syntax
-How to select the percentage of female in one class ?
+Suppose to use a SELECT to get the percentage of boys rate in one class ?
 
 {% highlight sql %}
 SELECT (SUM(CASE WHEN gender="M" THEN 1 END) / count(*)) AS 'num' 

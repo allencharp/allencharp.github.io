@@ -5,7 +5,11 @@ date:   2018-08-30 21:31:34 +0800
 ---
 # Setup ZAP
 
-setup proxy
+##setup proxy
 ![set the zap proxy]({{site.baseurl}}/assets/images/zap1.jpg)
 
-setup certification
+##setup certification
+Generate the ZAP certification from Tools->Options->Dynamic SSL Certification
+Import the certification file into browser
+
+##
