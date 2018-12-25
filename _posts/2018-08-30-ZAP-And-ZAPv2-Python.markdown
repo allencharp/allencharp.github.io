@@ -10,7 +10,7 @@ Some configuration of OWASP ZAP
 ![set the zap proxy]({{site.baseurl}}/assets/images/zap1.jpg)
 
 ### Setup certification
-Generate the ZAP certification from Tools->Options->Dynamic SSL Certification
+Generate the ZAP certification from Tools->Options->Dynamic SSL Certification<br>
 Import the certification file into browser
 
 ### Browser setup the proxy
@@ -19,5 +19,9 @@ The proxy should be the same as ZAP proxy
 ### Other ZAP common setting
 * Download community script from : https://github.com/zaproxy/zap-extensions/releases, then we could use Python/Javascript to write our own rules (the details will be talked later)
 * pip install python-owasp-zap-v2.4 to download the OWASP ZAP API (ZAPv2 library)
-* Copy the API Key from Tools->Options->API
+* Copy the API Key from Tools->Options->API, it will be used in ZAPv2 script
 ![API KEY]({{site.baseurl}}/assets/images/zap2.jpg) 
+
+# Use ZAPv2 API
+
+# User ZAP Docker Container
