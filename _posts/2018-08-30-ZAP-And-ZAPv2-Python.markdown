@@ -30,9 +30,9 @@ from zapv2 import ZAPv2
 target = 'http://127.0.0.1' # your scan target
 apikey = 'apikey' # the api key from ZAP->Tools->Options-API 
 
-# ZAP API client will connect to 8080 port by default
 zap = ZAPv2(apikey=apikey, proxies={'http': 'http://127.0.0.1:8090', 'https': 'http://127.0.0.1:8090'})
-{% endhighlight %}
+
 zap.urlopen(target)
+{% endhighlight %}
 
 # User ZAP Docker Container
