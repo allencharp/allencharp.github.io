@@ -35,4 +35,20 @@ zap = ZAPv2(apikey=apikey, proxies={'http': 'http://127.0.0.1:8090', 'https': 'h
 zap.urlopen(target)
 {% endhighlight %}
 
+#### Use selenium to launch firefox :
+{% highlight python %}
+capabilities = webdriver.DesiredCapabilities.FIREFOX
+capabilities['proxy'] = {
+    'proxyType': "manual",
+    'httpProxy': "127.0.0.1:8080",
+    'ftpProxy': "127.0.0.1:8080",
+    'sslProxy': "127.0.0.1:8080"
+    }
+capabilities['acceptInsecureCerts'] = True
+
+capabilities['acceptSslCerts'] = False
+
+self.driver = webdriver.Firefox(capabilities=capabilities)
+self.driver.maximize_window()
+{% endhighlight %}
 # User ZAP Docker Container
