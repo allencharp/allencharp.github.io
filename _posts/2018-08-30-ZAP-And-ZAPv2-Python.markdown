@@ -35,7 +35,9 @@ zap = ZAPv2(apikey=apikey, proxies={'http': 'http://127.0.0.1:8090', 'https': 'h
 zap.urlopen(target)
 {% endhighlight %}
 
-#### Use selenium to launch firefox :
+#### Use selenium to launch firefox, 
+#### make the ZAP to listen the firefox traffic and scan the vlun issue:
+#### In this way, we could automate the login/auth scan
 {% highlight python %}
 capabilities = webdriver.DesiredCapabilities.FIREFOX
 capabilities['proxy'] = {
@@ -51,4 +53,5 @@ capabilities['acceptSslCerts'] = False
 self.driver = webdriver.Firefox(capabilities=capabilities)
 self.driver.maximize_window()
 {% endhighlight %}
+
 # User ZAP Docker Container
