@@ -23,7 +23,7 @@ The proxy should be the same as ZAP proxy
 ![API KEY]({{site.baseurl}}/assets/images/zap2.jpg) 
 
 # Use ZAPv2 API
-#### Init ZAPv2 object and set the scan target:
+Init ZAPv2 object and set the scan target:
 {% highlight python %}
 from zapv2 import ZAPv2
 
@@ -36,8 +36,8 @@ zap.urlopen(target)
 {% endhighlight %}
 
 #### Use selenium to launch firefox, 
-#### make the ZAP to listen the firefox traffic and scan the vlun issue:
-#### In this way, we could automate the login/auth scan
+make the ZAP to listen the firefox traffic and scan the vlun issue:
+In this way, we could automate the login/auth scan
 {% highlight python %}
 capabilities = webdriver.DesiredCapabilities.FIREFOX
 capabilities['proxy'] = {
