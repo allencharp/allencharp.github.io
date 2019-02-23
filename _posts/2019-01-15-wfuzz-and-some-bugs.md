@@ -16,5 +16,5 @@ elif name == "postdata":
             return self.__variablesPOST.multipartEncoded()
     else:
             return self.__uknPostData
-{% %}
+{% endhighlight %}
 If we change the ContentType to applicaton/json, then the post data will be corrupted to __uknPostData
