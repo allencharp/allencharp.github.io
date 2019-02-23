@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "wfuzz and payloads"
+title:  "wfuzz and some bugs"
 date:   2019-01-15 22:31:34 +0800
 ---
 
