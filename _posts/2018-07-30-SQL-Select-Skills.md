@@ -30,4 +30,9 @@ SELECT (SUM(CASE WHEN gender="M" THEN 1 END) / count(*)) AS 'num'
 FROM studentTable;
 {% endhighlight %}
 
-#
+# select Nth high salary in the office
+{% hightlight sql %}
+SELECT MIN(EmpSalary)
+FROM Salary
+WHERE EmpSalary IN(SELECT TOP N EmpSalary FROM Salary ORDER BY EmpSalary DESC) 
+{% endhighlight %}
