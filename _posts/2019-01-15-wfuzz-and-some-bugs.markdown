@@ -6,8 +6,8 @@ date:   2019-01-15 22:31:34 +0800
 
 # Don't set Content-Type Header in Wfuzz
 
-If use postdata to send HTTP Post, don't change the http content-type.
-The origin source code in src/wfuzz/externals/reqresp/Request.py
+If use postdata to send HTTP Post, don't change the http content-type. The origin source code in <br>
+[src/wfuzz/externals/reqresp/Request.py](https://github.com/xmendez/wfuzz/blob/master/src/wfuzz/externals/reqresp/Request.py)
 {% highlight python %}
 elif name == "postdata":
     if self.ContentType == "application/x-www-form-urlencoded":
