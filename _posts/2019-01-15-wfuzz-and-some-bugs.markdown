@@ -4,7 +4,10 @@ title:  "wfuzz and some bugs"
 date:   2019-01-15 22:31:34 +0800
 ---
 
-# Don't set Content-Type Header in Wfuzz
+# Wuff is a cool brute force tool, currently I integrate python Wuff into ZAPv2 library could do a lot of amazing job. <br>
+# However, Wfuzz also contains some bugs that we should avoid 
+
+* Couldn't set Content-Type Header in Wfuzz when we post data
 
 If use postdata to send HTTP Post, don't change the http content-type. The origin source code in <br>
 [src/wfuzz/externals/reqresp/Request.py](https://github.com/xmendez/wfuzz/blob/master/src/wfuzz/externals/reqresp/Request.py)
