@@ -5,7 +5,12 @@ date:   2018-09-30 21:31:34 +0800
 ---
 
 # What is JWT Tokens
-First please take a look at this [JWT token tools](https://jwt.io/)
+First please take a look at this [JWT token tools](https://jwt.io/) <br>
+
+Simple put, a JWT is a string with following format:
+{% highlight python %}
+header.payload.signature
+{% endhighlight %}
 
 
 # The scenario that when we use JWT tokens
