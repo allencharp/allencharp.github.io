@@ -11,6 +11,12 @@ Simple put, a JWT is a string with following format:
 {% highlight python %}
 header.payload.signature
 {% endhighlight %}
+The JWT signature would be represented by this  pseudocode:
+{% highlight javascript%}
+data = base64urlEncode( header ) + '.' + base64urlEncode( payload )
+hashedData = hash( data, secret )
+signature = base64urlEncode( hashedData )
+{% endhighlight %}
 
 # How does JWT protect data
 Most important, JWT is not a way to **encrypt** the data, it is a way to prove the data is created from a authentic source, so <br>
