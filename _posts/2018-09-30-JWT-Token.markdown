@@ -11,6 +11,17 @@ Simple put, a JWT is a string with following format:
 {% highlight python %}
 header.payload.signature
 {% endhighlight %}
+![JWT Format]({{site.baseurl}}/assets/images/zap3.jpg)
+#### Header Sample
+{% highlight json %}
+{
+  "typ": "JWT",
+  "alg": "HS256"
+}
+{% endhighlight %}
+type is off course JWT, and hashing algorithm is use **SHA256** to encode the string
+
+
 The JWT signature would be represented by this  pseudocode:
 {% highlight javascript%}
 data = base64urlEncode( header ) + '.' + base64urlEncode( payload )
