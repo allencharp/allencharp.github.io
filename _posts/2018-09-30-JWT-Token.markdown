@@ -21,7 +21,18 @@ header.payload.signature
 {% endhighlight %}
 type is off course JWT, and hashing algorithm is use **SHA256** to encode the string
 
+#### Payload
+The payload component is the data that stores in the JWT. </br>
+There are some optional items in payload, such as "iss", "sub" and "exp"
+{% highlight json %}
+{
+  "userId": "1101001",
+  "name": "Allen",
+  "exp": "2019/01/10"
+}
+{% endhighlight %}
 
+#### Signature
 The JWT signature would be represented by this  pseudocode:
 {% highlight javascript%}
 data = base64urlEncode( header ) + '.' + base64urlEncode( payload )
@@ -34,6 +45,3 @@ Most important, JWT is not a way to **encrypt** the data, it is a way to prove t
 the data can be easily decoded and read.
 **JWT do not guarantee any security for sensitive data, Don't save the sensitive data in JWT**
 
-
-
-# The scenario that when we use JWT tokens
