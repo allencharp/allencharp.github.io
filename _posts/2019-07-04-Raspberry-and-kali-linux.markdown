@@ -12,4 +12,4 @@ Useful tool: [etcher](https://www.balena.io/etcher/) (burn the image into SD car
 {% highlight bash %}
 sudo systemctl enable ssh
 sudo systemctl start ssh
-{% enghighlight %}
+{% endhighlight %}
