@@ -13,3 +13,7 @@ Useful tool: [etcher](https://www.balena.io/etcher/) (burn the image into SD car
 sudo systemctl enable ssh
 sudo systemctl start ssh
 {% endhighlight %}
+
+# (optional) Create Home NAS with Raspberry
+See the youtube video [here](https://www.youtube.com/watch?v=EH6P6v3lxsE&t=388s)<br>
+Useful tool: Samba <br> 
