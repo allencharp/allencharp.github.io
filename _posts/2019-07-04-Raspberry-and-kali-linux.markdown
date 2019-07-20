@@ -16,4 +16,9 @@ sudo systemctl start ssh
 
 # (optional) Create Home NAS with Raspberry
 See the youtube video [here](https://www.youtube.com/watch?v=EH6P6v3lxsE&t=388s)<br>
-Useful tool: Samba <br> 
+Useful tool: Samba <br>
+
+{% highlight bash %}
+sudo mount /dev/sda1 /External/
+sudo /etc/init.d/smbd restart
+{% endhighlight %}
