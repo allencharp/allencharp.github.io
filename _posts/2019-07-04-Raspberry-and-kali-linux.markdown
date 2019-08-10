@@ -22,3 +22,14 @@ Useful tool: Samba <br>
 sudo mount /dev/sda1 /External/
 sudo /etc/init.d/smbd restart
 {% endhighlight %}
+
+# nmap script
+All scirpts locate in /usr/share/nmap/scripts
+{% highlight bash %}
+cd /usr/share/nmap/scripts/
+git clone https://github.com/vulnersCom/nmap-vulners.git
+git clone https://github.com/scipag/vulscan.git
+cd vulscan/utilities/updater/
+chmod +x updateFiles.sh
+./updateFiles.sh
+{% endhighlight %}
