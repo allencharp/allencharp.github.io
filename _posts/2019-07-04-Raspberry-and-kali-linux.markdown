@@ -23,13 +23,26 @@ sudo mount /dev/sda1 /External/
 sudo /etc/init.d/smbd restart
 {% endhighlight %}
 
-# nmap script
+# Nmap Script
 All scirpts locate in /usr/share/nmap/scripts
 {% highlight bash %}
+
+# go to nmap script folder
 cd /usr/share/nmap/scripts/
+
+# get the nmap-vulners nse
 git clone https://github.com/vulnersCom/nmap-vulners.git
+
+# get the vulscan nse
 git clone https://github.com/scipag/vulscan.git
+
+# update
 cd vulscan/utilities/updater/
 chmod +x updateFiles.sh
 ./updateFiles.sh
+{% endhighlight %}
+
+The nmap command will be 
+{% highlight bash %}
+nmap --script vulscan --script-args vulscandb=exploitdb.csv -sV www.baidu.com
 {% endhighlight %}
