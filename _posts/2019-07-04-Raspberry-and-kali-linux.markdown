@@ -44,5 +44,5 @@ chmod +x updateFiles.sh
 
 The nmap command will be 
 {% highlight bash %}
-nmap --script vulscan --script-args vulscandb=exploitdb.csv -sV www.baidu.com
+nmap --script vulscan -sV www.baidu.com
 {% endhighlight %}
