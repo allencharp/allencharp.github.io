@@ -25,6 +25,7 @@ sudo /etc/init.d/smbd restart
 
 # Nmap Script
 All scirpts locate in /usr/share/nmap/scripts
+read the introduction from [here](https://null-byte.wonderhowto.com/how-to/easily-detect-cves-with-nmap-scripts-0181925/)
 {% highlight bash %}
 
 # go to nmap script folder
@@ -46,3 +47,5 @@ The nmap command will be
 {% highlight bash %}
 nmap --script vulscan -sV www.baidu.com
 {% endhighlight %}
+
+# WireShark
