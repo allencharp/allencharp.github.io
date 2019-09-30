@@ -4,9 +4,25 @@ title:  "CORS Header Misconfiguration"
 date:   2019-09-22 22:31:34 +0800
 ---
 
-* What is CORS Header
+# What is CORS Header
+A request for a resource (like an image or a font) outside of the origin is known as a cross-origin request. <br>
+CORS (cross-origin resource sharing) manages cross-origin requests.
+<br>
+The CORS standard is needed because it allows servers to specify not just who can access its assets, but also how the assets can be accessed.<br>
+For example, it is likely that server A does not want servers B, C, or D to edit or delete its assets.
+<br>
 
+# CORS Header
+* Access-Control-Allow-Origin
+* Access-Control-Allow-Credentials
+* Access-Control-Allow-Headers
+* Access-Control-Allow-Methods
+* Access-Control-Expose-Headers
+* Access-Control-Max-Age
+* Access-Control-Request-Headers
+* Access-Control-Request-Method
+* Origin
 
-* CORS Misconfiguration
+# CORS Misconfiguration
 
-* CORS Scan Tool
+# CORS Scan Tool
