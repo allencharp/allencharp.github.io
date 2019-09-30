@@ -8,6 +8,7 @@ date:   2019-09-22 22:31:34 +0800
 A request for a resource (like an image or a font) outside of the origin is known as a cross-origin request. <br>
 CORS (cross-origin resource sharing) manages cross-origin requests.
 <br>
+<br>
 The CORS standard is needed because it allows servers to specify not just who can access its assets, but also how the assets can be accessed.<br>
 For example, it is likely that server A does not want servers B, C, or D to edit or delete its assets.
 <br>
@@ -22,6 +23,7 @@ For example, it is likely that server A does not want servers B, C, or D to edit
 * Access-Control-Request-Headers
 * Access-Control-Request-Method
 * Origin
+The most important header is *Access-Control-Allow-Origin*, which is determined by server, which host could access the resource. <br>
 
 # CORS Misconfiguration
 
