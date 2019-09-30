@@ -12,8 +12,10 @@ CORS (cross-origin resource sharing) manages cross-origin requests.
 The CORS standard is needed because it allows servers to specify not just who can access its assets, but also how the assets can be accessed.<br>
 For example, it is likely that server A does not want servers B, C, or D to edit or delete its assets.
 <br>
+<br>
 
 # CORS Header
+The most important header is *Access-Control-Allow-Origin*, which is determined by server, which host could access the resource. <br>
 * Access-Control-Allow-Origin
 * Access-Control-Allow-Credentials
 * Access-Control-Allow-Headers
@@ -25,9 +27,10 @@ For example, it is likely that server A does not want servers B, C, or D to edit
 * Origin
 <br>
 <br>
-The most important header is *Access-Control-Allow-Origin*, which is determined by server, which host could access the resource. <br>
 
 # CORS Misconfiguration
-* Set "*" to Access-Control-Allow-Origin header, which contains the sensitive inforamtion
+* Set "*" to *Access-Control-Allow-Origin* header, which contains the sensitive inforamtion
+* Poor Validation on *Origin* header
 
 # CORS Scan Tool
+{{CORScanner}}[https://github.com/chenjj/CORScanner]
