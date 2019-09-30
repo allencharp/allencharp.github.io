@@ -24,8 +24,10 @@ For example, it is likely that server A does not want servers B, C, or D to edit
 * Access-Control-Request-Method
 * Origin
 <br>
+<br>
 The most important header is *Access-Control-Allow-Origin*, which is determined by server, which host could access the resource. <br>
 
 # CORS Misconfiguration
+* Set "*" to Access-Control-Allow-Origin header, which contains the sensitive inforamtion
 
 # CORS Scan Tool
