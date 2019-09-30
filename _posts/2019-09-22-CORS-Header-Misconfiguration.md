@@ -23,6 +23,7 @@ For example, it is likely that server A does not want servers B, C, or D to edit
 * Access-Control-Request-Headers
 * Access-Control-Request-Method
 * Origin
+<br>
 The most important header is *Access-Control-Allow-Origin*, which is determined by server, which host could access the resource. <br>
 
 # CORS Misconfiguration
