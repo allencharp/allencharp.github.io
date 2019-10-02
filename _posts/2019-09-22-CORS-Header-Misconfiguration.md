@@ -29,7 +29,7 @@ The most important header is *Access-Control-Allow-Origin*, which is determined 
 <br>
 
 # CORS Misconfiguration
-* Set "**" to *Access-Control-Allow-Origin* header, which contains the sensitive inforamtion
+* Set "\*" to *Access-Control-Allow-Origin* header, which contains the sensitive inforamtion
 * Poor Validation on *Origin* header
 * Directly reflect the *Origin* header to *Access-Control-Allow-Origin*
 
