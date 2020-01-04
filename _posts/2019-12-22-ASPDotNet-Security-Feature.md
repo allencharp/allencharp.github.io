@@ -13,7 +13,7 @@ using(var stream = file.FileContent)
     DoProcessing(stream);
 }
 {% endhighlight %}
-Bad approach, when using <strong>FileBytes</strong>, it will read all the file content into member, which is possible for Denial of Service.
+Bad approach, when using <strong>FileBytes</strong>, it will read all the file content into member, which is possible for Denial of Service.<br>
 Sample:
 {% highlight csharp %}
 DoProcessing(file.FileBytes)
@@ -22,4 +22,4 @@ DoProcessing(file.FileBytes)
 ##### Validate the upload extension name
 {% highlight aspx-cs %}
 <validationsettings allowedfileextensions=".jpg,.png"></validationsettings>
-{% %}
+{% endhighlight %}
