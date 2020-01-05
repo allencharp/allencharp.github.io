@@ -5,7 +5,8 @@ date:   2019-12-22 20:04:34 +0800
 ---
 
 # Code Best Practices
-[reference](https://www.youtube.com/watch?v=V_LFLjnFnis&t=657s) <br>
+[reference](https://github.com/DevExpress/aspnet-security-bestpractices/tree/master/SecurityBestPractices.WebForms) <br>
+
 ### Good approach when handle the upload file.
 * Handle DDoS
 {% highlight C# %}
@@ -37,6 +38,6 @@ Typciall the jpg xss attack:
 
 ### Enable CSRF token
 ASP.net sample:
-{% highlight C# %}ßß
+{% highlight C# %}
 [ValidateAntiForgeryToken]
 {% endhighlight %}
