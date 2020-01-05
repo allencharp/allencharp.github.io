@@ -1,10 +1,11 @@
 ---
 layout: post
-title:  "ASP.NET Security Feature"
+title:  "Application Security Feature"
 date:   2019-12-22 20:04:34 +0800
 ---
 
 # Code Best Practices
+[reference](https://www.youtube.com/watch?v=V_LFLjnFnis&t=657s) <br>
 ### Good approach when handle the upload file.
 * Handle DDoS
 {% highlight csharp %}
@@ -27,8 +28,8 @@ DoProcessing(file.FileBytes)
 ### Secure the way when displaying binary images
 * Handle the <strong>ContentType</strong> properly
 {% highlight csharp %}
-Response.ContentType = "image/jpeg" #specify content-type to prevent the vulnerability
-Response.Headers.Add("X-Content-Type-Options", 'nosniff")
+Response.ContentType = "image/jpeg"; #specify content-type to prevent the vulnerability
+Response.Headers.Add("X-Content-Type-Options", 'nosniff");
 {% endhighlight %}
 Typciall the jpg xss attack:
 ![jpg xss attack]({{site.baseurl}}/assets/images/jpg-xss.jpg)
