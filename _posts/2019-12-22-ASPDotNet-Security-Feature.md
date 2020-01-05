@@ -5,8 +5,8 @@ date:   2019-12-22 20:04:34 +0800
 ---
 
 # Code Best Practices
-## Good approach when handle the upload file.
 * Handle DDoS
+Good approach when handle the upload file.
 {% highlight csharp %}
 using(var stream = file.FileContent)
 {
@@ -19,7 +19,9 @@ Sample:
 DoProcessing(file.FileBytes)
 {% endhighlight %}
 
-* Validate the upload extension name
+* Validate the upload extension name, to prevent the malicious file attack
 {% highlight aspx-cs %}
 <validationsettings allowedfileextensions=".jpg,.png"></validationsettings>
 {% endhighlight %}
+
+* Handle the <strong>Response.ContentType</strong>
