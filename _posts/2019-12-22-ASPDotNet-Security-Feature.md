@@ -5,8 +5,8 @@ date:   2019-12-22 20:04:34 +0800
 ---
 
 # Code Best Practices
+### Good approach when handle the upload file.
 * Handle DDoS
-Good approach when handle the upload file.
 {% highlight csharp %}
 using(var stream = file.FileContent)
 {
@@ -24,4 +24,11 @@ DoProcessing(file.FileBytes)
 <validationsettings allowedfileextensions=".jpg,.png"></validationsettings>
 {% endhighlight %}
 
-* Handle the <strong>Response.ContentType</strong>
+### Secure the way when displaying binary images
+* Handle the <strong>ContentType</strong> properly
+{% highlight csharp %}
+Response.ContentType = "image/jpeg" #specify content-type to prevent the vulnerability
+Response.Headers.Add("X-Content-Type-Options", 'nosniff")
+{% endhighlight %}
+Typciall the jpg xss attack:
+![jpg xss attack]({{site.baseurl}}/assets/images/jpg-xss.jpg)
