@@ -29,7 +29,14 @@ DoProcessing(file.FileBytes)
 * Handle the <strong>ContentType</strong> properly
 {% highlight C# %}
 Response.ContentType = "image/jpeg"; #specify content-type to prevent the vulnerability
-Response.Headers.Add("X-Content-Type-Options", 'nosniff");
+Response.Headers.Add("X-Content-Type-Options", "nosniff");
 {% endhighlight %}
 Typciall the jpg xss attack:
 ![jpg xss attack]({{site.baseurl}}/assets/images/jpg-xss.jpg)
+
+
+### Enable CSRF token
+ASP.net sample:
+{% highlight C# %}ßß
+[ValidateAntiForgeryToken]
+{% endhighlight %}
