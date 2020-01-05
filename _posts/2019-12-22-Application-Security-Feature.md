@@ -8,7 +8,7 @@ date:   2019-12-22 20:04:34 +0800
 [reference](https://www.youtube.com/watch?v=V_LFLjnFnis&t=657s) <br>
 ### Good approach when handle the upload file.
 * Handle DDoS
-{% highlight csharp %}
+{% highlight C# %}
 using(var stream = file.FileContent)
 {
     DoProcessing(stream);
@@ -27,7 +27,7 @@ DoProcessing(file.FileBytes)
 
 ### Secure the way when displaying binary images
 * Handle the <strong>ContentType</strong> properly
-{% highlight csharp %}
+{% highlight C# %}
 Response.ContentType = "image/jpeg"; #specify content-type to prevent the vulnerability
 Response.Headers.Add("X-Content-Type-Options", 'nosniff");
 {% endhighlight %}
