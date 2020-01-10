@@ -35,9 +35,33 @@ Response.Headers.Add("X-Content-Type-Options", "nosniff");
 Typciall the jpg xss attack:
 ![jpg xss attack]({{site.baseurl}}/assets/images/jpg-xss.jpg)
 
+### Prevent Open Redirect
+* IsLocalUrl Validation
+{% highlight C# %}
+private IActionResult RedirectToLocal(string returnUrl)
+{
+    if (Url.IsLocalUrl(returnUrl))
+    {
+        return Redirect(returnUrl);
+    }
+    else
+    {
+        return RedirectToAction(nameof(HomeController.Index), "Home");
+    }
+}
+{% endhighlight %}
+
+* LocalRedirect
+{% highlight C# %}
+public IActionResult SomeAction(string redirectUrl)
+{
+    return LocalRedirect(redirectUrl);
+}
+{% endhighlight %}
 
 ### Enable CSRF token
 ASP.net sample:
 {% highlight C# %}
 [ValidateAntiForgeryToken]
 {% endhighlight %}
+
