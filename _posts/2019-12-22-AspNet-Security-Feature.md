@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Application Security Feature"
+title:  "ASP.NET Security Feature"
 date:   2019-12-22 20:04:34 +0800
 ---
 
@@ -61,7 +61,7 @@ public IActionResult SomeAction(string redirectUrl)
 
 ### Enable CSRF token
 ASP.net sample:
-{% highlight C# %}
+{% highlight C# %}ßßßßßß
 [ValidateAntiForgeryToken]
 {% endhighlight %}
 
