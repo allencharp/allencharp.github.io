@@ -63,4 +63,6 @@ ASP.net sample:
 {% highlight C# %}ßßßßßß
 [ValidateAntiForgeryToken]
 {% endhighlight %}
+<br>
+### Encode
 
