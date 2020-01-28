@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "HTTP Smuggling Attack"
+title:  "Server Side Request Forgery"
 date:   2020-01-18 16:24:00 +0800
 ---
 
