@@ -39,6 +39,12 @@ fpassthru($image);}
 {% endhighlight %}
 
 # Mitigating Server Side Request Forgery
+* Input Validation and Whitelist
+Using <b>Regex</b> to ensure that data received is valid from a security point of view if the input data have a simple format.<br>
+After ensuring the validity of the incoming IP address, the second layer of validation is applied. A whitelist is created after determining all the IP addresses (v4 and v6 in order to avoid bypasses) of the identified and trusted applications. The valid IP is cross checked with that list to ensure its communication with the internal application (string strict comparison with case sensitive).
+
+
 * Disable URL schema
 If your application only uses HTTP or HTTPS, then disable unnecessary URL schemas, it will be unable to use the web application to make requests using potentially dangerous schemas such as <b>file://</b>, <b>dict://</b>, <b>ftp://</b> and <b>gopher://</b>.
 
+* Domain Whitlist and DNS Resoltion 
