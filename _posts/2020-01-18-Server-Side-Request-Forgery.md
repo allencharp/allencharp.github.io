@@ -39,3 +39,6 @@ fpassthru($image);}
 {% endhighlight %}
 
 # Mitigating Server Side Request Forgery
+* Disable URL schema
+If your application only uses HTTP or HTTPS, then disable unnecessary URL schemas, it will be unable to use the web application to make requests using potentially dangerous schemas such as <b>file://</b>, <b>dict://</b>, <b>ftp://</b> and <b>gopher://</b>.
+
