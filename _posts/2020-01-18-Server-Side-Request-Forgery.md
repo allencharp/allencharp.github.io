@@ -39,15 +39,15 @@ fpassthru($image);}
 {% endhighlight %}
 
 # Mitigating Server Side Request Forgery
-* Input Validation and Whitelist
+* Input Validation and Whitelist<br>
 Using <b>Regex</b> to ensure that data received is valid from a security point of view if the input data have a simple format.<br>
 After ensuring the validity of the incoming IP address, the second layer of validation is applied. A whitelist is created after determining all the IP addresses (v4 and v6 in order to avoid bypasses) of the identified and trusted applications. The valid IP is cross checked with that list to ensure its communication with the internal application (string strict comparison with case sensitive).
 
 
-* Disable URL schema
+* Disable URL schema<br>
 If your application only uses HTTP or HTTPS, then disable unnecessary URL schemas, it will be unable to use the web application to make requests using potentially dangerous schemas such as <b>file://</b>, <b>dict://</b>, <b>ftp://</b> and <b>gopher://</b>.
 
-* Authentication on internal services
+* Authentication on internal services<br>
 By default, services such as Memcached, Redis, Elasticsearch, and MongoDB do not require authentication. An attacker can use Server Side Request Forgery vulnerabilities to access some of these services without any authentication. Therefore, to ensure web application security, it’s best to enable authentication wherever possible, even for services on the local network.
 
 [reference](https://www.acunetix.com/blog/articles/server-side-request-forgery-vulnerability/): 
