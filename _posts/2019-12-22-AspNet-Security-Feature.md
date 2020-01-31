@@ -61,7 +61,7 @@ public IActionResult SomeAction(string redirectUrl)
 
 ### Enable CSRF token
 ASP.net sample:
-{% highlight C# %}ßßßßßß
+{% highlight C# %}
 [ValidateAntiForgeryToken]
 {% endhighlight %}
 <br>
@@ -70,11 +70,6 @@ ASP.net sample:
 ### Path Manipulation and Path.Combine()
 {% highlight C# %}
 public static bytes[] getFile(String filename) {
-  // Disallow filenames with the dot-dot path traversal sequence.
-  if (filename.Contains("..") {
-    throw new ArgumentException("error");
-  }
-
   String imageDir = "C:\\Image\\";
   filepath = Path.Combine(imageDir, filename);
   var ext = Path.GetExtension(filePath);
@@ -87,3 +82,16 @@ From [MS Doc](https://docs.microsoft.com/en-us/dotnet/api/system.io.path.combine
 
 > The parameters are not parsed if they have white space. Therefore, <b>if path2 includes white space (for example, " \file.txt "), the Combine method appends path2 to path1 instead of returning only path2.</b>
 
+Preventation: Using <b>Path.GetFileName()</b> to get the "base name" of the parameter
+{% highlight C# %}
+public static bytes[] GetFile(String filename) {
+
+  if (string.IsNullOrEmpty(filename) || Path.GetFileName(filename) != filename)
+  {
+    throw new ArgumentNullException("error");
+  }
+
+  String filepath = Path.Combine("\\FILESHARE\images", filename);
+  return File.ReadAllBytes(filepath);
+}
+{% endhighlight %}
