@@ -58,11 +58,32 @@ public IActionResult SomeAction(string redirectUrl)
 }
 {% endhighlight %}
 <br>
+
 ### Enable CSRF token
 ASP.net sample:
 {% highlight C# %}ßßßßßß
 [ValidateAntiForgeryToken]
 {% endhighlight %}
 <br>
-### Encode
+
+
+### Path Manipulation and Path.Combine()
+{% highlight C# %}
+public static bytes[] getFile(String filename) {
+  // Disallow filenames with the dot-dot path traversal sequence.
+  if (filename.Contains("..") {
+    throw new ArgumentException("error");
+  }
+
+  String imageDir = "C:\\Image\\";
+  filepath = Path.Combine(imageDir, filename);
+  var ext = Path.GetExtension(filePath);
+  return File.ReadAllBytes(filepath);
+}
+{% endhighlight %}
+The security issue of the above code is using <b>Path.Combine()</b> to generate the path string. However, if the second parameter *filename* is using absolute path, then the first parameter *imageDir* will be ignored<br>
+From [MS Doc](https://docs.microsoft.com/en-us/dotnet/api/system.io.path.combine?view=netframework-4.8) it says:
+> If path2 does not include a root (for example, if path2 does not start with a separator character or a drive specification), the result is a concatenation of the two paths, with an intervening separator character. If path2 includes a root, path2 is returned.
+
+> The parameters are not parsed if they have white space. Therefore, <b>if path2 includes white space (for example, " \file.txt "), the Combine method appends path2 to path1 instead of returning only path2.</b>
 
