@@ -72,7 +72,7 @@ ASP.net sample:
 public static bytes[] getFile(String filename) {
   String imageDir = "C:\\Image\\";
   filepath = Path.Combine(imageDir, filename);
-  var ext = Path.GetExtension(filePath);
+
   return File.ReadAllBytes(filepath);
 }
 {% endhighlight %}
