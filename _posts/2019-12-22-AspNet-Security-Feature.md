@@ -15,7 +15,7 @@ using(var stream = file.FileContent)
     DoProcessing(stream);
 }
 {% endhighlight %}
-Bad approach, when using <strong>FileBytes</strong>, it will read all the file content into member, which is possible for Denial of Service.<br>
+Bad approach, when using <strong>FileBytes</strong>, it will read all the file content into memory, which is possible for Denial of Service.<br>
 {% highlight C# %}
 DoProcessing(file.FileBytes) // Bad approach sample
 {% endhighlight %}
