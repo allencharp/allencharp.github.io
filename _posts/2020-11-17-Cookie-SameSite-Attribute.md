@@ -10,7 +10,7 @@ date:   2020-11-17 19:56:00 +0800
 
 # SameSite attribute
 * <b>Strict</b>: If you set SameSite to <b>Strict</b>, your cookie will only be sent in a first-party context. In user terms, the cookie will only be sent if the site for the cookie matches the site currently shown in the browser's URL bar. 
-* <b>Lax</b>: When you set a cookie' SameSite attribute to Lax, the cookie will be sent along with the GET request initiated by third party website.
+* <b>Lax</b>: When you set a cookie' SameSite attribute to <b>Lax</b>, the cookie will be sent along with the GET request initiated by third party website.
 <br>
 The important point here is that, to send a cookie with a GET request, GET request being made must cause a top level navigation. Only in this way, the cookie set as LAX will be sent. 
 
