@@ -47,4 +47,4 @@ public class VulnerableLog4jExampleHandler implements HttpHandler {
 * This injected payload triggers a second stage, and allows an attacker to execute arbitrary code.
 
 # Scan tool
-# [Log4j-scanner](https://github.com/cisagov/log4j-scanner
+# [Log4j-scanner](https://github.com/cisagov/log4j-scanner)
