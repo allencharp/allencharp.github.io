@@ -46,4 +46,4 @@ public class VulnerableLog4jExampleHandler implements HttpHandler {
 * This response contains a path to a remote Java class file (ex. http://second-stage.attacker.com/Exploit.class) which is injected into the server process,
 * This injected payload triggers a second stage, and allows an attacker to execute arbitrary code.
 
-# [Scan Tool](https://github.com/cisagov/log4j-scanner)
+# Scan Tool: [log4j-scanner](https://github.com/cisagov/log4j-scanner)
