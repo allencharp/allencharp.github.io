@@ -45,3 +45,6 @@ public class VulnerableLog4jExampleHandler implements HttpHandler {
 * The log4j vulnerability is triggered by this payload and the server makes a request to attacker.com via "Java Naming and Directory Interface" (JNDI),
 * This response contains a path to a remote Java class file (ex. http://second-stage.attacker.com/Exploit.class) which is injected into the server process,
 * This injected payload triggers a second stage, and allows an attacker to execute arbitrary code.
+
+# Scan tool
+# [Log4j-scanner](https://github.com/cisagov/log4j-scanner
