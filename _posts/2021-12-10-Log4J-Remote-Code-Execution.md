@@ -22,7 +22,7 @@ public class VulnerableLog4jExampleHandler implements HttpHandler {
    * A simple HTTP endpoint that reads the request's User Agent and logs it back.
    * This is basically pseudo-code to explain the vulnerability, and not a full example.
    * @param he HTTP Request Object
-   */
+   */ 
   public void handle(HttpExchange he) throws IOException {
     string userAgent = he.getRequestHeader("user-agent");
     
