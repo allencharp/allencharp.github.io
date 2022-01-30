@@ -24,7 +24,7 @@ github_username:  allennone
 
 # Build settings
 markdown: kramdown
-theme: gitbook
+theme: minima
 plugins:
   - jekyll-feed
 
