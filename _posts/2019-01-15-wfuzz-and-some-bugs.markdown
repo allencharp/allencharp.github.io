@@ -2,6 +2,8 @@
 layout: post
 title:  "wfuzz and some bugs"
 date:   2019-01-15 22:31:34 +0800
+author: allencharp
+tags: [pentest, wfuzz, fuzzing]
 ---
 
 # Wuff is a cool brute force tool, currently I integrate python Wuff into ZAPv2 library could do a lot of amazing job. <br>

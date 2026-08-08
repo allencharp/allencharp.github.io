@@ -2,7 +2,8 @@
 layout: post
 title:  "SQL Select Skills"
 date:   2018-07-30 21:34:34 +0800
-categories: jekyll update
+author: allencharp
+tags: [database, sql, tips]
 ---
 
 # optional parameter to compose where condition

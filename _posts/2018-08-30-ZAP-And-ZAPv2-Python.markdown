@@ -2,6 +2,8 @@
 layout: post
 title:  "ZAP and ZAPv2 Python Library"
 date:   2018-08-30 21:31:34 +0800
+author: allencharp
+tags: [pentest, zap, python]
 ---
 # Setup ZAP
 Some configuration of OWASP ZAP

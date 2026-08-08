@@ -2,6 +2,8 @@
 layout: post
 title:  "Json Web Tokens"
 date:   2018-09-30 21:31:34 +0800
+author: allencharp
+tags: [web-security, jwt, authentication]
 ---
 
 # What is JWT Tokens

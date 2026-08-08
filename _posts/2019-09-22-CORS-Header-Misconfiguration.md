@@ -2,6 +2,8 @@
 layout: post
 title:  "CORS Header Misconfiguration"
 date:   2019-09-22 22:31:34 +0800
+author: allencharp
+tags: [web-security, cors, misconfiguration]
 ---
 
 # What is CORS Header

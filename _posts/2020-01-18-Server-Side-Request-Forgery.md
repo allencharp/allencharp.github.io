@@ -2,6 +2,8 @@
 layout: post
 title:  "Server Side Request Forgery"
 date:   2020-01-18 16:24:00 +0800
+author: allencharp
+tags: [web-security, ssrf, pentest]
 ---
 
 # What is SSRF

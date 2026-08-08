@@ -2,6 +2,8 @@
 layout: post
 title:  "Log4J Remote Code Execution"
 date:   2021-12-10 19:56:00 +0800
+author: allencharp
+tags: [web-security, log4j, rce]
 ---
 
 # [Reference](https://www.lunasec.io/docs/blog/log4j-zero-day/)

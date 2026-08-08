@@ -2,6 +2,8 @@
 layout: post
 title:  "Cookie SameSite Attribute"
 date:   2020-11-17 19:56:00 +0800
+author: allencharp
+tags: [web-security, cookies, samesite]
 ---
 
 # What are first-party and third-party cookies?

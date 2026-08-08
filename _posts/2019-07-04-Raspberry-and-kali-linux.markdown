@@ -2,6 +2,8 @@
 layout: post
 title:  "Raspberry and Kali Linux"
 date:   2019-07-04 22:31:34 +0800
+author: allencharp
+tags: [kali, raspberry-pi, pentest]
 ---
 
 # Install Kali Linux in Raspberry 3

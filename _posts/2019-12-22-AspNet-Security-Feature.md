@@ -2,6 +2,8 @@
 layout: post
 title:  "ASP.NET Security Feature"
 date:   2019-12-22 20:04:34 +0800
+author: allencharp
+tags: [web-security, aspnet, hardening]
 ---
 
 # Code Best Practices
