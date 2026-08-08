@@ -8,15 +8,21 @@ tags: [kali, raspberry-pi, pentest]
 
 # Install Kali Linux on Raspberry Pi 3
 
-See the YouTube video [here](https://www.youtube.com/watch?v=yCD4x38yOSg).  
+A Raspberry Pi running Kali makes a cheap, portable pentesting box. See the YouTube video [here](https://www.youtube.com/watch?v=yCD4x38yOSg).  
 Useful tool: [Etcher](https://www.balena.io/etcher/) (burn the image to an SD card).
 
 # Enable SSH in Kali
+
+By default SSH is disabled. Enable and start it:
 
 {% highlight bash %}
 sudo systemctl enable ssh
 sudo systemctl start ssh
 {% endhighlight %}
+
+## SSH hardening tip
+
+For a lab or field device, prefer key-based authentication: copy your public key to `~/.ssh/authorized_keys`, then disable password logins in `/etc/ssh/sshd_config` (`PasswordAuthentication no`). This keeps brute force off your box.
 
 # (Optional) Create a Home NAS with Raspberry Pi
 
@@ -55,6 +61,16 @@ The nmap command will be:
 nmap --script vulscan -sV www.baidu.com
 {% endhighlight %}
 
+Notes:
+
+* `nmap-vulners` queries the Vulners database and reports CVEs for the detected service versions.
+* `vulscan` maintains its own local vulnerability database (updated by `updateFiles.sh`).
+* Both need `-sV` (version detection) to know which software versions are running.
+
 # Wireshark
 
-Wireshark is a packet analyzer that comes pre-installed on Kali; use it to inspect HTTP, DNS and other traffic while testing.
+Wireshark is a packet analyzer that comes pre-installed on Kali; use it to inspect HTTP, DNS and other traffic while testing. For headless usage on the Pi, `tshark` (the CLI version) is a good alternative.
+
+# Summary
+
+A Kali Pi is a compact, always-ready platform for network tests: burn the image, enable SSH with key auth, load nmap vulnerability scripts, and you have a field device that can scan, sniff and pivot — plus a Samba NAS when you need storage.
