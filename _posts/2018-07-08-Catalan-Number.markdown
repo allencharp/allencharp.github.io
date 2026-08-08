@@ -41,13 +41,13 @@ C(n) = (2n)! / ((n + 1)! · n!) = (1 / (n + 1)) · C(2n, n)
 
 A simple iterative implementation in Python:
 
-{% highlight python %}
+```python
 def catalan_number(n):
     nm = dm = 1
     for k in range(2, n + 1):
         nm, dm = (nm * (n + k), dm * k)
     return nm // dm
-{% endhighlight %}
+```
 
 Analysis: the loop runs `n-1` times with constant work per iteration, so the time complexity is **O(n)** and space is **O(1)** (ignoring the size of the big integers). `//` keeps integer division, which is exact here.
 

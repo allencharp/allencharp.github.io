@@ -15,10 +15,10 @@ Useful tool: [Etcher](https://www.balena.io/etcher/) (burn the image to an SD ca
 
 By default SSH is disabled. Enable and start it:
 
-{% highlight bash %}
+```bash
 sudo systemctl enable ssh
 sudo systemctl start ssh
-{% endhighlight %}
+```
 
 ## SSH hardening tip
 
@@ -29,17 +29,17 @@ For a lab or field device, prefer key-based authentication: copy your public key
 See the YouTube video [here](https://www.youtube.com/watch?v=EH6P6v3lxsE&t=388s).  
 Useful tool: Samba.
 
-{% highlight bash %}
+```bash
 sudo mount /dev/sda1 /External/
 sudo /etc/init.d/smbd restart
-{% endhighlight %}
+```
 
 # Nmap Scripts
 
 All scripts are located in `/usr/share/nmap/scripts`.  
 Read the introduction [here](https://null-byte.wonderhowto.com/how-to/easily-detect-cves-with-nmap-scripts-0181925/).
 
-{% highlight bash %}
+```bash
 # go to nmap script folder
 cd /usr/share/nmap/scripts/
 
@@ -53,13 +53,13 @@ git clone https://github.com/scipag/vulscan.git
 cd vulscan/utilities/updater/
 chmod +x updateFiles.sh
 ./updateFiles.sh
-{% endhighlight %}
+```
 
 The nmap command will be:
 
-{% highlight bash %}
+```bash
 nmap --script vulscan -sV www.baidu.com
-{% endhighlight %}
+```
 
 Notes:
 

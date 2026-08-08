@@ -39,7 +39,7 @@ The browser proxy should be the same as the ZAP proxy (host `127.0.0.1`, port `8
 
 Initialize the ZAPv2 object and set the scan target:
 
-{% highlight python %}
+```python
 from zapv2 import ZAPv2
 
 target = 'http://127.0.0.1'   # your scan target
@@ -50,21 +50,21 @@ zap = ZAPv2(apikey=apikey,
                      'https': 'http://127.0.0.1:8090'})
 
 zap.urlopen(target)           # browse the target so ZAP sees it
-{% endhighlight %}
+```
 
 Common API operations:
 
-{% highlight python %}
+```python
 zap.spider.scan(target)          # crawl the target
 zap.ascan.scan(target)           # start an active scan
 zap.pscan.records_to_scan        # passive scan progress
-{% endhighlight %}
+```
 
 ## Use Selenium to drive Firefox
 
 Let ZAP listen to the Firefox traffic and scan for vulnerabilities. In this way, login/auth flows can be automated — the crawler can authenticate first and then scan the authenticated surface:
 
-{% highlight python %}
+```python
 from selenium import webdriver
 
 capabilities = webdriver.DesiredCapabilities.FIREFOX
@@ -78,7 +78,7 @@ capabilities['acceptInsecureCerts'] = True
 
 driver = webdriver.Firefox(capabilities=capabilities)
 driver.maximize_window()
-{% endhighlight %}
+```
 
 > For newer Selenium versions, use `selenium.webdriver.FirefoxOptions` and `options.set_proxy(...)` instead of the deprecated capabilities dict.
 
@@ -86,11 +86,11 @@ driver.maximize_window()
 
 ZAP also ships official Docker images (e.g. `owasp/zap2docker-stable`), which are handy for CI/CD pipelines. The packaged scripts run a scan and exit with a code your pipeline can gate on:
 
-{% highlight bash %}
+```bash
 docker pull owasp/zap2docker-stable
 docker run -t owasp/zap2docker-stable zap-baseline.py -t https://example.com
 docker run -t owasp/zap2docker-stable zap-full-scan.py -t https://example.com
-{% endhighlight %}
+```
 
 `zap-baseline.py` performs a passive scan (safe, no intrusive requests); `zap-full-scan.py` runs the full active scan.
 

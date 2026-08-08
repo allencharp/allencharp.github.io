@@ -20,12 +20,12 @@ Each part is **base64url** encoded (base64 with `-` and `_` instead of `+` and `
 
 ## Header
 
-{% highlight json %}
+```json
 {
   "typ": "JWT",
   "alg": "HS256"
 }
-{% endhighlight %}
+```
 
 `typ` is of course JWT, and the signing algorithm here is **HS256 (HMAC-SHA256)**. The header tells the verifier *how* the token was signed — which is exactly why the algorithm must be trusted explicitly (see attacks below).
 
@@ -38,13 +38,13 @@ The payload component is the data stored in the JWT. There are some optional reg
 * `exp` — expiration time
 * `iat` — issued at
 
-{% highlight json %}
+```json
 {
   "userId": "1101001",
   "name": "Allen",
   "exp": 1547078400
 }
-{% endhighlight %}
+```
 
 > Note: `exp` is a [NumericDate](https://tools.ietf.org/html/rfc7519#section-2) (Unix timestamp), not a date string. An expired token must be rejected.
 
@@ -52,11 +52,11 @@ The payload component is the data stored in the JWT. There are some optional reg
 
 The JWT signature is computed roughly like this:
 
-{% highlight javascript %}
+```javascript
 data = base64urlEncode( header ) + '.' + base64urlEncode( payload )
 hashedData = hash( data, secret )
 signature = base64urlEncode( hashedData )
-{% endhighlight %}
+```
 
 The signature proves that the token was created by someone who knows the secret (HS256) or owns the private key (RS256).
 
@@ -72,9 +72,9 @@ Most importantly, JWT is **not** a way to *encrypt* the data — it is a way to 
 
 Some libraries accept a token whose header says `"alg": "none"` and skip signature verification entirely. An attacker can forge a token with arbitrary claims:
 
-{% highlight json %}
+```json
 {"alg": "none", "typ": "JWT"}
-{% endhighlight %}
+```
 
 **Fix**: always verify the signature; reject `none` and enforce an explicit algorithm allowlist.
 
