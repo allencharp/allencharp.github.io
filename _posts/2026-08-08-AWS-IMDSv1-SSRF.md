@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "AWS IMDSv1 SSRF"
-date:   2026-08-08 20:00:00 +0800
+date:   2026-08-08 18:00:00 +0800
 author: allencharp
 tags: [web-security, cloud-security, aws, ssrf]
 ---
