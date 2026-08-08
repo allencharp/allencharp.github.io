@@ -6,18 +6,18 @@ author: allencharp
 tags: [web-security, cors, misconfiguration]
 ---
 
-# What is CORS Header
-A request for a resource (like an image or a font) outside of the origin is known as a cross-origin request. <br>
-CORS (cross-origin resource sharing) manages cross-origin requests.
-<br>
-<br>
-The CORS standard is needed because it allows servers to specify not just who can access its assets, but also how the assets can be accessed.<br>
-For example, it is likely that server A does not want servers B, C, or D to edit or delete its assets.
-<br>
-<br>
+# What is CORS
 
-# CORS Header
-The most important header is *Access-Control-Allow-Origin*, which is determined by server, which host could access the resource. <br>
+A request for a resource (like an image or a font) from outside the origin is known as a cross-origin request.  
+CORS (Cross-Origin Resource Sharing) manages cross-origin requests.
+
+The CORS standard is needed because it allows servers to specify not just *who* can access its assets, but also *how* the assets can be accessed.  
+For example, server A probably does not want servers B, C or D to edit or delete its assets.
+
+# CORS Headers
+
+The most important header is **Access-Control-Allow-Origin**, which is decided by the server and controls which hosts can access the resource:
+
 * Access-Control-Allow-Origin
 * Access-Control-Allow-Credentials
 * Access-Control-Allow-Headers
@@ -27,13 +27,13 @@ The most important header is *Access-Control-Allow-Origin*, which is determined 
 * Access-Control-Request-Headers
 * Access-Control-Request-Method
 * Origin
-<br>
-<br>
 
 # CORS Misconfiguration
-* Set "\*" to *Access-Control-Allow-Origin* header, which contains the sensitive inforamtion
-* Poor Validation on *Origin* header
-* Directly reflect the *Origin* header to *Access-Control-Allow-Origin*
+
+* Setting `*` in the *Access-Control-Allow-Origin* header when the response contains sensitive information
+* Poor validation of the *Origin* header
+* Directly reflecting the *Origin* header into *Access-Control-Allow-Origin*
 
 # CORS Scan Tool
+
 [CORScanner](https://github.com/chenjj/CORScanner)

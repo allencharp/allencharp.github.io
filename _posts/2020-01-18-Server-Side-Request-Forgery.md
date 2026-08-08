@@ -7,11 +7,13 @@ tags: [web-security, ssrf, pentest]
 ---
 
 # What is SSRF
-* Server-side request forgery (also known as SSRF) is a web security vulnerability that allows an attacker to induce the servier-side application to make HTTP requests to an arbitrary domain of the attacker's choosing
-* In typical SSRF examples, the attacker might cause the server to make a connection back to itself, or to other web-based services within the organization's infrastrcture, or to external third-party systems
-* A successful SSRF attack can often result in unauthorized actions or access to data within the organization, either in the vulnerable application itself or on other back-end systems that the applciation can communicate with. In some situations, the SSRF vulnerabilitiy might allow an attacker to perfor arbitrary command execution. 
+
+* Server-side request forgery (also known as SSRF) is a web security vulnerability that allows an attacker to induce the server-side application to make HTTP requests to an arbitrary domain of the attacker's choosing.
+* In typical SSRF examples, the attacker might cause the server to make a connection back to itself, or to other web-based services within the organization's infrastructure, or to external third-party systems.
+* A successful SSRF attack can often result in unauthorized actions or access to data within the organization, either in the vulnerable application itself or on other back-end systems that the application can communicate with. In some situations, the SSRF vulnerability might allow an attacker to perform arbitrary command execution.
 
 # Sample Malicious Code
+
 {% highlight php %}
 <?php
 
@@ -41,15 +43,14 @@ fpassthru($image);}
 {% endhighlight %}
 
 # Mitigating Server Side Request Forgery
-* Input Validation and Whitelist<br>
-Using <b>Regex</b> to ensure that data received is valid from a security point of view if the input data have a simple format.<br>
-After ensuring the validity of the incoming IP address, the second layer of validation is applied. A whitelist is created after determining all the IP addresses (v4 and v6 in order to avoid bypasses) of the identified and trusted applications. The valid IP is cross checked with that list to ensure its communication with the internal application (string strict comparison with case sensitive).
 
+* **Input validation and whitelist**  
+  Use **regex** to ensure that the received data is valid from a security point of view, if the input data has a simple format. After ensuring the validity of the incoming IP address, a second layer of validation is applied: a whitelist is created after determining all the IP addresses (IPv4 and IPv6, to avoid bypasses) of the identified and trusted applications. The valid IP is cross-checked against that list (strict string comparison, case sensitive) to ensure communication with the internal application.
 
-* Disable URL schema<br>
-If your application only uses HTTP or HTTPS, then disable unnecessary URL schemas, it will be unable to use the web application to make requests using potentially dangerous schemas such as <b>file://</b>, <b>dict://</b>, <b>ftp://</b> and <b>gopher://</b>.
+* **Disable unnecessary URL schemes**  
+  If your application only uses HTTP or HTTPS, then disable unnecessary URL schemes, so the web application cannot be used to make requests using potentially dangerous schemes such as **file://**, **dict://**, **ftp://** and **gopher://**.
 
-* Authentication on internal services<br>
-By default, services such as Memcached, Redis, Elasticsearch, and MongoDB do not require authentication. An attacker can use Server Side Request Forgery vulnerabilities to access some of these services without any authentication. Therefore, to ensure web application security, it’s best to enable authentication wherever possible, even for services on the local network.
+* **Authentication on internal services**  
+  By default, services such as Memcached, Redis, Elasticsearch, and MongoDB do not require authentication. An attacker can use SSRF vulnerabilities to access these services without any authentication. Therefore, to ensure web application security, it is best to enable authentication wherever possible, even for services on the local network.
 
-[reference](https://www.acunetix.com/blog/articles/server-side-request-forgery-vulnerability/): 
+[reference](https://www.acunetix.com/blog/articles/server-side-request-forgery-vulnerability/)

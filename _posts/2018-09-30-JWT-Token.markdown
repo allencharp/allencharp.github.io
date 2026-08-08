@@ -6,44 +6,53 @@ author: allencharp
 tags: [web-security, jwt, authentication]
 ---
 
-# What is JWT Tokens
-First, take a look at this [JWT token tools](https://jwt.io/) <br>
+# What is JWT
 
-Simple put, a JWT is a string with following format:
-{% highlight python %}
+First, take a look at this [JWT debugger](https://jwt.io).
+
+Simply put, a JWT is a string with the following format:
+
+```
 header.payload.signature
-{% endhighlight %}
-![JWT Format]({{site.baseurl}}/assets/images/zap3.jpg)
-#### Header Sample
+```
+
+## Header
+
 {% highlight json %}
 {
   "typ": "JWT",
   "alg": "HS256"
 }
 {% endhighlight %}
-type is off course JWT, and hashing algorithm is use **SHA256** to encode the string
 
-#### Payload
-The payload component is the data that stores in the JWT. </br>
-There are some optional items in payload, such as "iss", "sub" and "exp"
+`typ` is of course JWT, and the signing algorithm here is **HS256 (HMAC-SHA256)**.
+
+## Payload
+
+The payload component is the data stored in the JWT. There are some optional claims, such as `iss`, `sub` and `exp`:
+
 {% highlight json %}
 {
   "userId": "1101001",
   "name": "Allen",
-  "exp": "2019/01/10"
+  "exp": 1547078400
 }
 {% endhighlight %}
 
-#### Signature
-The JWT signature would be represented by this  pseudocode:
-{% highlight javascript%}
+> Note: `exp` is a [NumericDate](https://tools.ietf.org/html/rfc7519#section-2) (Unix timestamp), not a date string.
+
+## Signature
+
+The JWT signature is computed roughly like this:
+
+{% highlight javascript %}
 data = base64urlEncode( header ) + '.' + base64urlEncode( payload )
 hashedData = hash( data, secret )
 signature = base64urlEncode( hashedData )
 {% endhighlight %}
 
 # How does JWT protect data
-Most important, JWT is not a way to **encrypt** the data, it is a way to prove the data is created from a authentic source, so <br>
-the data can be easily decoded and read.
-**JWT do not guarantee any security for sensitive data, Don't save the sensitive data in JWT**
 
+Most importantly, JWT is **not** a way to *encrypt* the data — it is a way to prove the data was created by an authentic source, so the data can be easily decoded and read.
+
+**JWT does not guarantee any security for sensitive data. Do not save sensitive data in a JWT.**

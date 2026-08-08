@@ -2,13 +2,67 @@
 layout: default
 ---
 
-<h1>Posts</h1>
+<section class="hero">
+  <h1 class="hero-title">Security Notes</h1>
+  <p class="hero-sub">Self-learning notes on web security, pentesting tools and networking — by allencharp.</p>
+  <p class="hero-actions">
+    <a class="btn" href="{{ '/about/' | relative_url }}">About</a>
+    <a class="btn btn-github" href="https://github.com/allencharp"><span class="icon"></span>GitHub</a>
+  </p>
+</section>
 
-<ul class="post-list">
-  {% for post in site.posts %}
-    <li>
-      <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      <span class="post-meta">{{ post.date | date: "%-d %B %Y" }}{% if post.tags %} · {{ post.tags | join: " · " }}{% endif %}</span>
-    </li>
-  {% endfor %}
-</ul>
+<section class="post-group">
+  <h2>Web Security</h2>
+  <ul class="post-list">
+    {% for post in site.posts %}
+      {% if post.tags contains 'web-security' %}
+      <li>
+        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="post-meta">{{ post.date | date: "%-d %B %Y" }}{% if post.tags %} · {{ post.tags | join: " · " }}{% endif %}</span>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="post-group">
+  <h2>Pentesting &amp; Tools</h2>
+  <ul class="post-list">
+    {% for post in site.posts %}
+      {% unless post.tags contains 'web-security' or post.tags contains 'network-security' or post.tags contains 'math' or post.tags contains 'database' %}
+      <li>
+        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="post-meta">{{ post.date | date: "%-d %B %Y" }}{% if post.tags %} · {{ post.tags | join: " · " }}{% endif %}</span>
+      </li>
+      {% endunless %}
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="post-group">
+  <h2>Network &amp; Crypto</h2>
+  <ul class="post-list">
+    {% for post in site.posts %}
+      {% if post.tags contains 'network-security' %}
+      <li>
+        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="post-meta">{{ post.date | date: "%-d %B %Y" }}{% if post.tags %} · {{ post.tags | join: " · " }}{% endif %}</span>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="post-group">
+  <h2>Algorithms &amp; Database</h2>
+  <ul class="post-list">
+    {% for post in site.posts %}
+      {% if post.tags contains 'math' or post.tags contains 'database' %}
+      <li>
+        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="post-meta">{{ post.date | date: "%-d %B %Y" }}{% if post.tags %} · {{ post.tags | join: " · " }}{% endif %}</span>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</section>

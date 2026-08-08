@@ -7,37 +7,49 @@ tags: [web-security, aspnet, hardening]
 ---
 
 # Code Best Practices
-[reference](https://github.com/DevExpress/aspnet-security-bestpractices/tree/master/SecurityBestPractices.WebForms) <br>
-<br>
-### Good approach when handle the upload file.
-* Handle DDoS
+
+[reference](https://github.com/DevExpress/aspnet-security-bestpractices/tree/master/SecurityBestPractices.WebForms)
+
+### Good approach when handling file upload
+
+* Handle memory usage (prevent DoS):
+
 {% highlight C# %}
 using(var stream = file.FileContent)
 {
     DoProcessing(stream);
 }
 {% endhighlight %}
-Bad approach, when using <strong>FileBytes</strong>, it will read all the file content into memory, which is possible for Denial of Service.<br>
+
+The bad approach below uses **FileBytes**, which reads the whole file content into memory and can lead to a Denial of Service:
+
 {% highlight C# %}
 DoProcessing(file.FileBytes) // Bad approach sample
 {% endhighlight %}
 
-* Validate the upload extension name, to prevent the malicious file attack
+* Validate the upload extension to prevent malicious file attacks:
+
 {% highlight aspx-cs %}
 <validationsettings allowedfileextensions=".jpg,.png"></validationsettings>
 {% endhighlight %}
-<br>
-### Secure the way when displaying binary images
-* Handle the <strong>ContentType</strong> properly
+
+### Secure the way binary images are displayed
+
+* Handle the **ContentType** properly:
+
 {% highlight C# %}
-Response.ContentType = "image/jpeg"; #specify content-type to prevent the vulnerability
+Response.ContentType = "image/jpeg"; // specify content-type to prevent the vulnerability
 Response.Headers.Add("X-Content-Type-Options", "nosniff");
 {% endhighlight %}
-Typciall the jpg xss attack:
+
+Typically, the JPG XSS attack:
+
 ![jpg xss attack]({{site.baseurl}}/assets/images/jpg-xss.jpg)
-<br>
+
 ### Prevent Open Redirect
-* IsLocalUrl Validation
+
+* IsLocalUrl validation:
+
 {% highlight C# %}
 private IActionResult RedirectToLocal(string returnUrl)
 {
@@ -52,41 +64,45 @@ private IActionResult RedirectToLocal(string returnUrl)
 }
 {% endhighlight %}
 
-* LocalRedirect
+* LocalRedirect:
+
 {% highlight C# %}
 public IActionResult SomeAction(string redirectUrl)
 {
     return LocalRedirect(redirectUrl);
 }
 {% endhighlight %}
-<br>
 
 ### Enable CSRF token
-ASP.net sample:
+
+ASP.NET sample:
+
 {% highlight C# %}
 [ValidateAntiForgeryToken]
 {% endhighlight %}
-<br>
-
 
 ### Path Manipulation and Path.Combine()
+
 {% highlight C# %}
-public static bytes[] getFile(String filename) {
+public static byte[] GetFile(String filename) {
   String imageDir = "C:\\Image\\";
   filepath = Path.Combine(imageDir, filename);
 
   return File.ReadAllBytes(filepath);
 }
 {% endhighlight %}
-The security issue of the above code is using <b>Path.Combine()</b> to generate the path string. However, if the second parameter *filename* is using absolute path, then the first parameter *imageDir* will be ignored<br>
-From [MS Doc](https://docs.microsoft.com/en-us/dotnet/api/system.io.path.combine?view=netframework-4.8) it says:
+
+The security issue in the code above is using **Path.Combine()** to generate the path string. If the second parameter *filename* uses an absolute path, the first parameter *imageDir* is ignored.  
+From [MS Doc](https://docs.microsoft.com/en-us/dotnet/api/system.io.path.combine?view=netframework-4.8):
+
 > If path2 does not include a root (for example, if path2 does not start with a separator character or a drive specification), the result is a concatenation of the two paths, with an intervening separator character. If path2 includes a root, path2 is returned.
 
-> The parameters are not parsed if they have white space. Therefore, <b>if path2 includes white space (for example, " \file.txt "), the Combine method appends path2 to path1 instead of returning only path2.</b>
+> The parameters are not parsed if they have white space. Therefore, **if path2 includes white space (for example, " \file.txt "), the Combine method appends path2 to path1 instead of returning only path2.**
 
-Preventation: Using <b>Path.GetFileName()</b> to get the "base name" of the parameter
+Prevention: use **Path.GetFileName()** to get the "base name" of the parameter:
+
 {% highlight C# %}
-public static bytes[] GetFile(String filename) {
+public static byte[] GetFile(String filename) {
 
   if (string.IsNullOrEmpty(filename) || Path.GetFileName(filename) != filename)
   {

