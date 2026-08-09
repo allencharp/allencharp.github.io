@@ -3,7 +3,7 @@ layout: post
 title:  "Securing Nexus Against Third-Party Supply Chain Poisoning"
 date:   2026-08-09 09:00:00 +0800
 author: allencharp
-tags: [supply-chain-security, nexus, devsecops, repository]
+tags: [supply-chain-security, nexus, devsecops, repository, security-design]
 ---
 
 # Introduction
