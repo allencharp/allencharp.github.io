@@ -12,10 +12,10 @@ layout: default
 </section>
 
 <section class="post-group">
-  <h2>Web Security</h2>
+  <h2>Security Design</h2>
   <ul class="post-list">
     {% for post in site.posts %}
-      {% if post.tags contains 'web-security' %}
+      {% if post.tags contains 'security-design' %}
       <li>
         <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
         <span class="post-meta">{{ post.date | date: "%-d %B %Y" }}{% if post.tags %} · {{ post.tags | join: " · " }}{% endif %}</span>
@@ -26,10 +26,10 @@ layout: default
 </section>
 
 <section class="post-group">
-  <h2>Security Design</h2>
+  <h2>Web Security</h2>
   <ul class="post-list">
     {% for post in site.posts %}
-      {% if post.tags contains 'security-design' %}
+      {% if post.tags contains 'web-security' %}
       <li>
         <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
         <span class="post-meta">{{ post.date | date: "%-d %B %Y" }}{% if post.tags %} · {{ post.tags | join: " · " }}{% endif %}</span>
