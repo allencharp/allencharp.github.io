@@ -1,9 +1,13 @@
 source "https://rubygems.org"
 
-gem "jekyll", "~> 3.8.3"
+# jekyll 3.9.x allows kramdown 2.x, which fixes CVE-2020-14001 / CVE-2021-28834
+gem "jekyll", "~> 3.9.0"
 
 # Vendored hacker theme; seo-tag is used by the theme layout
 gem "jekyll-seo-tag"
+
+# jekyll 3.9 defaults to kramdown input: GFM
+gem "kramdown-parser-gfm"
 
 # Pin old ffi so dependency resolution works on system ruby 2.6
 # (bundler 1.17 picks up ffi-1.17.x which needs ruby >= 3.0)

@@ -74,3 +74,34 @@ The sync script lists components from the test Nexus REST API, filters them by s
 ## Block Third-Party URLs for the Online Nexus
 
 The online Nexus runs no proxy repositories — it never fetches from the internet on its own. Its only write path is the nightly sync: the sync job uploads approved packages from test Nexus into the online Nexus repositories, and everything else is denied.
+
+# Architecture at a Glance
+
+```
+                     test VPC: firewall blocks direct 3rd-party access
+
+   ┌───────────────┐      ┌──────────────────┐      ┌──────────────────┐
+   │ dev / test    │─────▶│   test Nexus     │─────▶│ third-party repos│
+   │ servers       │      │  (proxy repos)   │      │  pypi / npm / ...│
+   └───────────────┘      └────────┬─────────┘      └──────────────────┘
+                                   │
+                                   ▼
+                      ┌────────────────────────┐
+                      │ ① poisoning scan       │── hit ─▶ quarantine + alert
+                      └────────────────────────┘         (never reaches online)
+                                   │ passed
+                                   ▼
+                      ┌────────────────────────┐
+                      │ ② 30-day observation   │  upstream removes bad versions
+                      └────────────────────────┘
+                                   │ nightly cron sync
+                                   ▼
+                     online VPC: no public internet
+
+   ┌───────────────┐      ┌──────────────────┐
+   │  production   │◀─────│  online Nexus    │   no proxy repos —
+   │  servers      │      │  (sync only)     │   never fetches on its own
+   └───────────────┘      └──────────────────┘
+```
+
+Every package travels the same path: pulled into the test Nexus from a third-party repository, scanned, held for 30 days, and only then synced to the online Nexus — which never touches the public internet.
