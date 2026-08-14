@@ -130,6 +130,8 @@ spec:
 
 The equivalent with OPA Gatekeeper + `sigstore` constraint library achieves the same goal for clusters that already run Gatekeeper.
 
+![Kubernetes admission control image signature verification flow](/assets/images/k8s-admission-verify-flow.svg)
+
 # Pitfalls
 
 - **Docker pull does not verify**: `docker pull` fetches the image blindly — signature verification is a separate, manual step with `cosign verify` or `notation verify`. The image is already on disk before you know whether it is trusted. **Podman** is the exception: with a configured trust policy (`/etc/containers/policy.json`) it rejects unsigned images at pull time, closing the gap between "downloaded" and "verified."
