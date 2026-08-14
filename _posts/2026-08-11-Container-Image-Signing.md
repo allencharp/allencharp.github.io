@@ -12,6 +12,8 @@ In the previous post we locked down third-party packages behind Nexus. Container
 
 Signing and verification fix this with cryptography: an image is signed by its builder, and every consumer (CI, or the production runtime) verifies the signature before trusting it. This post covers what image signing actually protects, the two mainstream toolchains — **Cosign** (sigstore) and **Notation** (Notary v2) — and how to enforce verification at runtime.
 
+![Container image signing and verification flow](/assets/images/container-image-signing-flow.svg)
+
 # What Signing Actually Covers
 
 ## Tags Are Names, Digests Are Content
