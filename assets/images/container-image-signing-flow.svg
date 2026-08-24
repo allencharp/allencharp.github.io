@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 520" width="100%" role="img">
-  <title>Container image signing and verification flow</title>
-  <desc>Build signs image with private key, pushes to registry. Consumer verifies with public key before deploy. Docker pulls then verifies separately; Podman verifies during pull.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 580" width="100%" role="img">
+  <title>Container image signing and verification flow with scanning</title>
+  <desc>CI builds image, runs poisoning and vulnerability scans, signs with private key, and pushes to registry. Consumer pulls, verifies signature, then deploys or rejects. Docker pulls then verifies separately; Podman verifies during pull.</desc>
 
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5"
@@ -18,8 +18,8 @@
   <!-- Title -->
   <text class="t" x="340" y="28" text-anchor="middle" fill="#3C3489">Container image signing and verification flow</text>
 
-  <!-- ========== Build & Sign column ========== -->
-  <text class="th" x="120" y="58" text-anchor="middle" fill="#534AB7">Build &amp; sign</text>
+  <!-- ========== Build, Scan & Sign column ========== -->
+  <text class="th" x="120" y="58" text-anchor="middle" fill="#534AB7">Build, scan &amp; sign</text>
 
   <!-- CI Build -->
   <g>
@@ -30,90 +30,98 @@
   <!-- Arrow down -->
   <path d="M120 116 L120 138" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <!-- Sign with private key -->
+  <!-- Scan: poisoning + vulnerability -->
   <g>
-    <rect x="40" y="148" width="160" height="44" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
-    <text class="th" x="120" y="170" text-anchor="middle" dominant-baseline="central" fill="#085041">Sign with private key</text>
+    <rect x="40" y="148" width="160" height="56" rx="8" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+    <text class="th" x="120" y="172" text-anchor="middle" dominant-baseline="central" fill="#854F0B">Scan</text>
+    <text class="ts" x="120" y="190" text-anchor="middle" dominant-baseline="central" fill="#633806">poisoning + CVE</text>
   </g>
 
   <!-- Arrow down -->
-  <path d="M120 192 L120 214" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M120 204 L120 226" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Sign with private key -->
+  <g>
+    <rect x="40" y="236" width="160" height="44" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+    <text class="th" x="120" y="258" text-anchor="middle" dominant-baseline="central" fill="#085041">Sign with private key</text>
+  </g>
+
+  <!-- Arrow down -->
+  <path d="M120 280 L120 302" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 
   <!-- Push to registry -->
   <g>
-    <rect x="40" y="224" width="160" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
-    <text class="th" x="120" y="246" text-anchor="middle" dominant-baseline="central" fill="#444441">Push to registry</text>
+    <rect x="40" y="312" width="160" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+    <text class="th" x="120" y="334" text-anchor="middle" dominant-baseline="central" fill="#444441">Push to registry</text>
   </g>
 
   <!-- Arrow right to registry -->
-  <path d="M200 246 L242 246" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M200 334 L242 334" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 
   <!-- ========== Registry column ========== -->
   <text class="th" x="340" y="58" text-anchor="middle" fill="#534AB7">Registry</text>
 
   <!-- Registry box -->
   <g>
-    <rect x="250" y="148" width="180" height="120" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
-    <text class="th" x="340" y="178" text-anchor="middle" dominant-baseline="central" fill="#444441">Image manifest</text>
-    <text class="ts" x="340" y="196" text-anchor="middle" dominant-baseline="central" fill="#5F5E5A">sha256:3f9a...</text>
-    <line x1="270" y1="210" x2="410" y2="210" stroke="#D3D1C7" stroke-width="0.5"/>
-    <text class="th" x="340" y="232" text-anchor="middle" dominant-baseline="central" fill="#444441">Signature artifact</text>
-    <text class="ts" x="340" y="250" text-anchor="middle" dominant-baseline="central" fill="#5F5E5A">OCI referrer / cosign tag</text>
+    <rect x="250" y="236" width="180" height="120" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+    <text class="th" x="340" y="266" text-anchor="middle" dominant-baseline="central" fill="#444441">Image manifest</text>
+    <text class="ts" x="340" y="284" text-anchor="middle" dominant-baseline="central" fill="#5F5E5A">sha256:3f9a...</text>
+    <line x1="270" y1="298" x2="410" y2="298" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text class="th" x="340" y="320" text-anchor="middle" dominant-baseline="central" fill="#444441">Signature artifact</text>
+    <text class="ts" x="340" y="338" text-anchor="middle" dominant-baseline="central" fill="#5F5E5A">OCI referrer / cosign tag</text>
   </g>
 
   <!-- Arrow right to consume -->
-  <path d="M438 206 L470 206" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M438 294 L470 294" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 
   <!-- ========== Consume & Verify column ========== -->
   <text class="th" x="560" y="58" text-anchor="middle" fill="#534AB7">Consume &amp; verify</text>
 
   <!-- Pull image -->
   <g>
-    <rect x="480" y="148" width="160" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
-    <text class="th" x="560" y="170" text-anchor="middle" dominant-baseline="central" fill="#444441">Pull image</text>
+    <rect x="480" y="236" width="160" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+    <text class="th" x="560" y="258" text-anchor="middle" dominant-baseline="central" fill="#444441">Pull image</text>
   </g>
 
   <!-- Arrow down -->
-  <path d="M560 192 L560 214" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M560 280 L560 302" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 
   <!-- Verify with public key -->
   <g>
-    <rect x="480" y="224" width="160" height="44" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
-    <text class="th" x="560" y="246" text-anchor="middle" dominant-baseline="central" fill="#085041">Verify signature</text>
+    <rect x="480" y="312" width="160" height="44" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+    <text class="th" x="560" y="334" text-anchor="middle" dominant-baseline="central" fill="#085041">Verify signature</text>
   </g>
 
   <!-- Arrow down -->
-  <path d="M560 268 L560 290" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M560 356 L560 378" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 
   <!-- Decision: pass / fail -->
   <g>
-    <rect x="480" y="298" width="76" height="36" rx="6" fill="#EAF3DE" stroke="#639922" stroke-width="0.5"/>
-    <text class="ts" x="518" y="316" text-anchor="middle" dominant-baseline="central" fill="#27500A">Deploy</text>
+    <rect x="480" y="386" width="76" height="36" rx="6" fill="#EAF3DE" stroke="#639922" stroke-width="0.5"/>
+    <text class="ts" x="518" y="404" text-anchor="middle" dominant-baseline="central" fill="#27500A">Deploy</text>
   </g>
   <g>
-    <rect x="564" y="298" width="76" height="36" rx="6" fill="#FCEBEB" stroke="#E24B4A" stroke-width="0.5"/>
-    <text class="ts" x="602" y="316" text-anchor="middle" dominant-baseline="central" fill="#791F1F">Reject</text>
+    <rect x="564" y="386" width="76" height="36" rx="6" fill="#FCEBEB" stroke="#E24B4A" stroke-width="0.5"/>
+    <text class="ts" x="602" y="404" text-anchor="middle" dominant-baseline="central" fill="#791F1F">Reject</text>
   </g>
 
   <!-- ========== Docker vs Podman comparison ========== -->
-  <line x1="40" y1="360" x2="640" y2="360" stroke="#D3D1C7" stroke-width="0.5"/>
-  <text class="th" x="340" y="382" text-anchor="middle" fill="#534AB7">Pull-time verification comparison</text>
+  <line x1="40" y1="448" x2="640" y2="448" stroke="#D3D1C7" stroke-width="0.5"/>
+  <text class="th" x="340" y="470" text-anchor="middle" fill="#534AB7">Pull-time verification comparison</text>
 
   <!-- Docker -->
   <g>
-    <rect x="40" y="400" width="280" height="90" rx="10" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
-    <text class="th" x="180" y="422" text-anchor="middle" fill="#854F0B">Docker</text>
-    <text class="ts" x="180" y="442" text-anchor="middle" fill="#633806">docker pull → image on disk</text>
-    <text class="ts" x="180" y="458" text-anchor="middle" fill="#633806">cosign verify → separate step</text>
-    <text class="ts" x="180" y="474" text-anchor="middle" fill="#633806">(image already pulled if unsigned)</text>
+    <rect x="40" y="488" width="280" height="78" rx="10" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+    <text class="th" x="180" y="510" text-anchor="middle" fill="#854F0B">Docker</text>
+    <text class="ts" x="180" y="530" text-anchor="middle" fill="#633806">docker pull → image on disk</text>
+    <text class="ts" x="180" y="548" text-anchor="middle" fill="#633806">cosign verify → separate step</text>
   </g>
 
   <!-- Podman -->
   <g>
-    <rect x="360" y="400" width="280" height="90" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
-    <text class="th" x="500" y="422" text-anchor="middle" fill="#0F6E56">Podman</text>
-    <text class="ts" x="500" y="442" text-anchor="middle" fill="#085041">podman pull → verify during pull</text>
-    <text class="ts" x="500" y="458" text-anchor="middle" fill="#085041">policy.json enforces at pull time</text>
-    <text class="ts" x="500" y="474" text-anchor="middle" fill="#085041">(unsigned image rejected before download)</text>
+    <rect x="360" y="488" width="280" height="78" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+    <text class="th" x="500" y="510" text-anchor="middle" fill="#0F6E56">Podman</text>
+    <text class="ts" x="500" y="530" text-anchor="middle" fill="#085041">podman pull → verify during pull</text>
+    <text class="ts" x="500" y="548" text-anchor="middle" fill="#085041">policy.json enforces at pull time</text>
   </g>
 </svg>
