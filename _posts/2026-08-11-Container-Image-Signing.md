@@ -97,6 +97,40 @@ notation verify registry.example.com/app@sha256:3f9a...
 
 Because keys live in your KMS, the private key never leaves infrastructure — a strong fit for regulated environments.
 
+# Internal Registry Mirror Pipeline
+
+Signing and admission control are the last lines of defense. For third-party images — anything pulled from Docker Hub, GHCR, or an upstream vendor — the first line of defense is a **mirror pipeline** that gates every image before it enters your internal registry.
+
+The pipeline runs two checks in sequence; both must pass:
+
+## 1. Poisoning Scan
+
+This answers: *has the image been tampered with between the vendor's build and our pull?*
+
+- **Signature verification**: verify the vendor's cosign / Notation signature against a pinned public key.
+- **Digest pinning**: compare the pulled digest against an allow-listed `sha256:...` digest. If the vendor moved the tag, the digest mismatch blocks it.
+- **Layer anomaly detection**: scan for unexpected files (e.g., `/.backdoor`, `/etc/cron.d/malicious`), altered entrypoints, or hidden layers injected after the original build.
+- **SBOM reconciliation**: compare the image's generated SBOM against the vendor's published SBOM; drift indicates tampering.
+
+## 2. Vulnerability Scan
+
+This answers: *does the image contain known exploitable CVEs?*
+
+Tools like **Trivy**, **Grype**, or **Snyk** scan every layer for:
+- OS package CVEs (`apt`, `apk`, `rpm`)
+- Language-specific package CVEs (`npm`, `pip`, `maven`, `go.mod`)
+- Secret leakage (API keys, tokens baked into layers)
+
+The pipeline enforces a **severity threshold** (e.g., block on Critical + High with available fixes). An image with unacceptable CVEs is quarantined, not pushed.
+
+## Pipeline Outcome
+
+Only images that pass **both** scans are pushed to the internal registry. From there, the image is treated as a first-class artifact: signed by your own CI, verified by Kyverno at deploy time.
+
+![Internal registry mirror pipeline](/assets/images/internal-registry-pipeline.svg)
+
+**Key policy**: the Kubernetes cluster is configured to accept images **only** from the internal registry. Any Pod referencing Docker Hub directly is rejected at admission. This closes the loop: every running container has been through the mirror pipeline.
+
 # Enforcing Verification at Runtime
 
 Signing only pays off if something refuses unsigned images. Two layers:
