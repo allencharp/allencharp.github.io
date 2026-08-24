@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 580" width="100%" role="img">
-  <title>Container image signing and verification flow with scanning</title>
-  <desc>CI builds image, runs poisoning and vulnerability scans, signs with private key, and pushes to registry. Consumer pulls, verifies signature, then deploys or rejects. Docker pulls then verifies separately; Podman verifies during pull.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 640" width="100%" role="img">
+  <title>Container image signing and verification flow with K8s admission</title>
+  <desc>CI builds image, runs poisoning and vulnerability scans, signs with private key, and pushes to registry. K8s pulls image, API server sends to admission webhook, verifies signature, then deploys or rejects. Docker pulls then verifies separately; Podman verifies during pull.</desc>
 
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5"
@@ -30,7 +30,7 @@
   <!-- Arrow down -->
   <path d="M120 116 L120 138" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <!-- Scan: poisoning + vulnerability -->
+  <!-- Scan -->
   <g>
     <rect x="40" y="148" width="160" height="56" rx="8" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
     <text class="th" x="120" y="172" text-anchor="middle" dominant-baseline="central" fill="#854F0B">Scan</text>
@@ -71,11 +71,30 @@
     <text class="ts" x="340" y="338" text-anchor="middle" dominant-baseline="central" fill="#5F5E5A">OCI referrer / cosign tag</text>
   </g>
 
-  <!-- Arrow right to consume -->
+  <!-- Arrow right to K8s -->
   <path d="M438 294 L470 294" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <!-- ========== Consume & Verify column ========== -->
-  <text class="th" x="560" y="58" text-anchor="middle" fill="#534AB7">Consume &amp; verify</text>
+  <!-- ========== K8s Consume & Verify column ========== -->
+  <text class="th" x="560" y="58" text-anchor="middle" fill="#534AB7">K8s consume &amp; verify</text>
+
+  <!-- kubectl apply -->
+  <g>
+    <rect x="480" y="72" width="160" height="44" rx="8" fill="#E6F1FB" stroke="#378ADD" stroke-width="0.5"/>
+    <text class="th" x="560" y="94" text-anchor="middle" dominant-baseline="central" fill="#0C447C">kubectl apply</text>
+  </g>
+
+  <!-- Arrow down -->
+  <path d="M560 116 L560 138" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- K8s API Server / Admission -->
+  <g>
+    <rect x="480" y="148" width="160" height="56" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+    <text class="th" x="560" y="172" text-anchor="middle" dominant-baseline="central" fill="#085041">K8s admission</text>
+    <text class="ts" x="560" y="190" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">Kyverno / OPA Gatekeeper</text>
+  </g>
+
+  <!-- Arrow down -->
+  <path d="M560 204 L560 226" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 
   <!-- Pull image -->
   <g>
@@ -86,7 +105,7 @@
   <!-- Arrow down -->
   <path d="M560 280 L560 302" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <!-- Verify with public key -->
+  <!-- Verify signature -->
   <g>
     <rect x="480" y="312" width="160" height="44" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
     <text class="th" x="560" y="334" text-anchor="middle" dominant-baseline="central" fill="#085041">Verify signature</text>
@@ -104,6 +123,10 @@
     <rect x="564" y="386" width="76" height="36" rx="6" fill="#FCEBEB" stroke="#E24B4A" stroke-width="0.5"/>
     <text class="ts" x="602" y="404" text-anchor="middle" dominant-baseline="central" fill="#791F1F">Reject</text>
   </g>
+
+  <!-- ========== Fail path from admission ========== -->
+  <path d="M480 176 L440 176 L440 404 L474 404" fill="none" stroke="#E24B4A" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text class="ts" x="460" y="170" text-anchor="middle" fill="#E24B4A">reject</text>
 
   <!-- ========== Docker vs Podman comparison ========== -->
   <line x1="40" y1="448" x2="640" y2="448" stroke="#D3D1C7" stroke-width="0.5"/>
@@ -124,4 +147,9 @@
     <text class="ts" x="500" y="530" text-anchor="middle" fill="#085041">podman pull → verify during pull</text>
     <text class="ts" x="500" y="548" text-anchor="middle" fill="#085041">policy.json enforces at pull time</text>
   </g>
+
+  <!-- ========== Key insight callout ========== -->
+  <line x1="40" y1="586" x2="640" y2="586" stroke="#D3D1C7" stroke-width="0.5"/>
+  <text class="th" x="340" y="610" text-anchor="middle" fill="#534AB7">Image never runs on a node if signature verification fails</text>
+  <text class="ts" x="340" y="630" text-anchor="middle" fill="#5F5E5A">Admission webhook blocks the Pod before the container starts.</text>
 </svg>
