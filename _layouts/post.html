@@ -12,3 +12,26 @@ layout: default
 {% if page.tags %}
   <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
 {% endif %}
+
+<hr style="margin: 2em 0; border: none; border-top: 1px solid #444;">
+
+<h3>Comments</h3>
+<script src="https://giscus.app/client.js"
+        data-repo="allencharp/allencharp.github.io"
+        data-repo-id=""
+        data-category="General"
+        data-category-id=""
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<noscript>
+  <p>Please enable JavaScript to view the comments powered by <a href="https://giscus.app">giscus</a>.</p>
+</noscript>
