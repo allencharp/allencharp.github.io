@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 416" width="100%" role="img">
+  <title>Pinning GitHub Actions: version tag vs commit SHA</title>
+  <desc>With a version tag, an unchanged workflow resolves to a different commit after an attacker moves the tag. With a commit SHA, every run resolves to the same immutable content.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5"
+      markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke"
+        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .t { font-family: var(--font-sans, sans-serif); font-size: 14px; font-weight: 500; }
+      .th { font-family: var(--font-sans, sans-serif); font-size: 13px; font-weight: 500; }
+      .ts { font-family: var(--font-sans, sans-serif); font-size: 12px; font-weight: 400; }
+      .mono { font-family: var(--font-mono, monospace); font-size: 12px; font-weight: 400; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text class="t" x="340" y="26" text-anchor="middle" fill="#3C3489">Version tag vs commit SHA</text>
+
+  <!-- ========== Section 1: mutable tag ========== -->
+  <text class="th" x="40" y="54" fill="#534AB7">Mutable tag: every run re-resolves the pointer</text>
+
+  <!-- Workflow box -->
+  <g>
+    <rect x="200" y="66" width="280" height="50" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+    <text class="th" x="340" y="84" text-anchor="middle" dominant-baseline="central" fill="#444441">Workflow YAML (unchanged)</text>
+    <text class="mono" x="340" y="103" text-anchor="middle" dominant-baseline="central" fill="#5F5E5A">- uses: actions/checkout@v4</text>
+  </g>
+
+  <!-- Branch arrows -->
+  <path d="M330 116 L330 130 L180 130 L180 136" fill="none" stroke="#888780" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <path d="M350 116 L350 130 L500 130 L500 136" fill="none" stroke="#888780" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+
+  <!-- Run #1 -->
+  <g>
+    <rect x="40" y="140" width="290" height="70" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+    <text class="th" x="58" y="164" dominant-baseline="central" fill="#085041">Run #1</text>
+    <text class="mono" x="58" y="184" dominant-baseline="central" fill="#0F6E56">v4 resolves to 8f4b7f8486...</text>
+    <text class="ts" x="58" y="202" dominant-baseline="central" fill="#0F6E56">original, reviewed code</text>
+  </g>
+
+  <!-- Run #100 after tag move -->
+  <g>
+    <rect x="350" y="140" width="290" height="70" rx="8" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5"/>
+    <text class="th" x="368" y="164" dominant-baseline="central" fill="#791F1F">Run #100 (tag was moved)</text>
+    <text class="mono" x="368" y="184" dominant-baseline="central" fill="#A32D2D">v4 resolves to 3cbe65b3a1...</text>
+    <text class="ts" x="368" y="202" dominant-baseline="central" fill="#A32D2D">attacker code, dumps CI secrets</text>
+  </g>
+
+  <!-- ========== Section 2: pinned SHA ========== -->
+  <text class="th" x="40" y="240" fill="#534AB7">Pinned commit SHA: content-addressed, cannot be moved</text>
+
+  <!-- Workflow box -->
+  <g>
+    <rect x="200" y="252" width="280" height="50" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+    <text class="th" x="340" y="270" text-anchor="middle" dominant-baseline="central" fill="#444441">Workflow YAML</text>
+    <text class="mono" x="340" y="289" text-anchor="middle" dominant-baseline="central" fill="#5F5E5A">- uses: actions/checkout@8f4b7f84...</text>
+  </g>
+
+  <!-- Branch arrows -->
+  <path d="M330 302 L330 316 L180 316 L180 322" fill="none" stroke="#888780" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <path d="M350 302 L350 316 L500 316 L500 322" fill="none" stroke="#888780" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+
+  <!-- Run #1 -->
+  <g>
+    <rect x="40" y="326" width="290" height="70" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+    <text class="th" x="58" y="350" dominant-baseline="central" fill="#085041">Run #1</text>
+    <text class="mono" x="58" y="370" dominant-baseline="central" fill="#0F6E56">8f4b7f8486...</text>
+    <text class="ts" x="58" y="388" dominant-baseline="central" fill="#0F6E56">original, reviewed code</text>
+  </g>
+
+  <!-- Run #100 -->
+  <g>
+    <rect x="350" y="326" width="290" height="70" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+    <text class="th" x="368" y="350" dominant-baseline="central" fill="#085041">Run #100</text>
+    <text class="mono" x="368" y="370" dominant-baseline="central" fill="#0F6E56">8f4b7f8486...</text>
+    <text class="ts" x="368" y="388" dominant-baseline="central" fill="#0F6E56">identical, the tag move is irrelevant</text>
+  </g>
+</svg>
