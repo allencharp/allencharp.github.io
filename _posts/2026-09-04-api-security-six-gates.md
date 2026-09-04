@@ -3,7 +3,7 @@ layout: post
 title:  "API Security: The Six Gates"
 date:   2026-09-04 15:00:00 +0800
 author: allencharp
-tags: [web-security, api-security, security-design]
+tags: [api-security, security-design]
 ---
 
 
@@ -58,4 +58,4 @@ The 2023 OWASP API Security Top 10, reduced to the actual fix:
 
 **Scanners miss business logic.** Never trust amounts, stock, or coupon state from the client — the server decides what they're worth. Lock concurrency; validate state machines on every transition.
 
-> Part 2 of this series — *OAuth, OIDC and PKCE* — covers authentication and authorization. (Link added when Part 2 is published.)
+> Part 2 of this series: [OAuth, OIDC and PKCE]({% post_url 2022-01-23-OAuth %}) covers authentication and authorization.
