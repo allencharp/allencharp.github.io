@@ -3,7 +3,7 @@ layout: post
 title:  "TLS Handshake"
 date:   2020-02-20 21:16:00 +0800
 author: allencharp
-tags: [network-security, tls, crypto]
+tags: [web-security, network-security, tls, crypto]
 ---
 
 # Introduction
