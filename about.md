@@ -8,8 +8,8 @@ Security-focused self-learning blog by allencharp.
 
 Topics covered here:
 
-- Web security: SSRF, CORS, OAuth, JWT, Log4J and more
+- Web security: SSRF, CORS, JWT, Log4J, TLS and more
 - Pentesting tools: ZAP, wfuzz, Kali Linux, Raspberry Pi
-- Networking & cryptography: TLS handshake and related notes
+- Security design: OAuth/OIDC, API security, supply chain, container signing and more
 
 More about me: [GitHub](https://github.com/allencharp)
