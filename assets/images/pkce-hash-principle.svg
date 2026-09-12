@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" width="100%" role="img">
+  <title>PKCE: the code_verifier is hashed into the code_challenge</title>
+  <desc>The client generates a random code_verifier and keeps it in memory, hashes it with SHA256 and base64url-encodes it to produce the code_challenge. Only the challenge is published in the authorize URL; at the token endpoint the client sends the verifier back and the server re-hashes and compares.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5"
+      markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke"
+        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .t { font-family: var(--font-sans, sans-serif); font-size: 14px; font-weight: 500; }
+      .th { font-family: var(--font-sans, sans-serif); font-size: 14px; font-weight: 500; }
+      .ts { font-family: var(--font-sans, sans-serif); font-size: 13px; font-weight: 400; }
+      .mono { font-family: var(--font-mono, monospace); font-size: 12px; font-weight: 400; }
+    </style>
+  </defs>
+
+  <text class="th" x="340" y="26" text-anchor="middle" dominant-baseline="central" fill="#444441">PKCE in one line: hash the secret, publish only the hash</text>
+
+  <!-- code_verifier -->
+  <rect x="60" y="44" width="560" height="74" rx="10" fill="#E6F1FB" stroke="#378ADD" stroke-width="1"/>
+  <text class="th" x="80" y="66" fill="#0C447C">code_verifier — random, kept in memory</text>
+  <text class="mono" x="80" y="94" fill="#444441">dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk</text>
+
+  <!-- one-way hash arrow -->
+  <path d="M340 118 L340 144" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text class="ts" x="352" y="132" dominant-baseline="central" fill="#5F5E5A">SHA256 → BASE64URL  (one-way)</text>
+
+  <!-- code_challenge -->
+  <rect x="60" y="150" width="560" height="74" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+  <text class="th" x="80" y="172" fill="#085041">code_challenge — safe to publish in the authorize URL</text>
+  <text class="mono" x="80" y="200" fill="#444441">E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM</text>
+
+  <!-- bottom note -->
+  <rect x="60" y="240" width="560" height="64" rx="10" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+  <text class="ts" x="80" y="262" fill="#444441">One-way: seeing the challenge teaches you nothing about the verifier.</text>
+  <text class="ts" x="80" y="284" fill="#444441">At /token the client sends the verifier back; the server re-hashes and compares.</text>
+</svg>
