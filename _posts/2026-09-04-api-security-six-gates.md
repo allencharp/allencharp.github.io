@@ -57,5 +57,3 @@ The 2023 OWASP API Security Top 10, reduced to the actual fix:
 | Unsafe consumption | Validate third-party API responses too |
 
 **Scanners miss business logic.** Never trust amounts, stock, or coupon state from the client — the server decides what they're worth. Lock concurrency; validate state machines on every transition.
-
-> Part 2 of this series: [OAuth, OIDC and PKCE]({% post_url 2022-01-23-OAuth %}) covers authentication and authorization.

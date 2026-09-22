@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "MCP Security: Four Threats, Two Fences, Four Layers"
-date:   2026-09-12 15:00:00 +0800
+date:   2026-09-15 15:00:00 +0800
 author: allencharp
 tags: [ai-security, mcp, governance, llm, prompt-injection, supply-chain]
 ---
